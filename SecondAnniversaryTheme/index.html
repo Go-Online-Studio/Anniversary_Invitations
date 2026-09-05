@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>2nd Anniversary — Aarav &amp; Ananya</title>
   <meta name="description" content="Join Aarav &amp; Ananya in celebrating two years of love at their 2nd Anniversary Celebration on September 21, 2026.">
 
@@ -65,6 +65,10 @@
       width: 100%;
       max-width: var(--max-w);
       min-height: 100vh;
+      min-height: -webkit-fill-available;
+      min-height: 100svh;
+      min-height: 100dvh;
+      min-height: calc(var(--actual-vh, 1vh) * 100);
       margin: 0 auto;
       position: relative;
       box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
@@ -191,6 +195,10 @@
       width: 100%;
       max-width: var(--max-w);
       height: 100vh;
+      height: -webkit-fill-available;
+      height: 100svh;
+      height: 100dvh;
+      height: calc(var(--actual-vh, 1vh) * 100);
       z-index: 200;
       background: #000;
       display: flex;
@@ -799,7 +807,7 @@
     /* Audio FAB */
     #audio-ctrl {
       position: fixed;
-      bottom: 25px;
+      bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 38px));
       right: calc(50% - 240px + 25px);
       width: 48px;
       height: 48px;
@@ -815,7 +823,7 @@
       box-shadow: 0 5px 18px rgba(232, 145, 168, 0.45);
     }
     @media (max-width: 480px) {
-      #audio-ctrl { right: 16px; bottom: 20px; }
+      #audio-ctrl { right: 16px; bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 38px)); }
     }
 
     /* Footer */
@@ -1278,6 +1286,13 @@
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 
   <script>
+function setActualVh() {
+    const h = window.visualViewport?.height ?? window.innerHeight;
+    document.documentElement.style.setProperty('--actual-vh', `${h * 0.01}px`);
+}
+setActualVh();
+(window.visualViewport ?? window).addEventListener('resize', setActualVh);
+
     /* ═══════════════════════════════════════════
        LOAD, REFRESH & RESIZE LOGIC
     ═══════════════════════════════════════════ */

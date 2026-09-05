@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>50th Golden Anniversary - Robert & Margaret</title>
   <meta name="description" content="Join us in celebrating 50 years of love, laughter, and cherished memories at Robert & Margaret's 50th Golden Anniversary on October 24, 2026.">
 
@@ -60,7 +60,11 @@
     #app {
       width: 100%; 
       max-width: var(--max-w);
-      min-height: 100vh; 
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      min-height: 100svh;
+      min-height: 100dvh;
+      min-height: calc(var(--actual-vh, 1vh) * 100); 
       margin: 0 auto;
       background: var(--navy);
       position: relative;
@@ -74,7 +78,7 @@
     #landscape-warning {
       display: none;
       position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
+      top: 0; left: 0; width: 100vw; height: 100vh; height: -webkit-fill-available; height: 100svh; height: 100dvh; height: calc(var(--actual-vh, 1vh) * 100);
       background: #111111;
       color: var(--gold);
       z-index: 999999;
@@ -112,7 +116,7 @@
     /* Minimal Global Loader */
     #global-loader {
       position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
+      top: 0; left: 0; width: 100vw; height: 100vh; height: -webkit-fill-available; height: 100svh; height: 100dvh; height: calc(var(--actual-vh, 1vh) * 100);
       background: var(--navy);
       z-index: 9999999;
       display: flex;
@@ -140,7 +144,7 @@
     /* Envelope Layer */
     #curtain-layer {
       position: fixed;
-      top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: var(--max-w); height: 100vh;
+      top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: var(--max-w); height: 100vh; height: -webkit-fill-available; height: 100svh; height: 100dvh; height: calc(var(--actual-vh, 1vh) * 100);
       z-index: 100;
       background: #000;
       display: flex; align-items: center; justify-content: center;
@@ -847,6 +851,13 @@
     <div class="loader-ring"></div>
   </div>
   <script>
+function setActualVh() {
+    const h = window.visualViewport?.height ?? window.innerHeight;
+    document.documentElement.style.setProperty('--actual-vh', `${h * 0.01}px`);
+}
+setActualVh();
+(window.visualViewport ?? window).addEventListener('resize', setActualVh);
+
     (function() {
       const loader = document.getElementById('global-loader');
       const video = document.getElementById('curtain-video');

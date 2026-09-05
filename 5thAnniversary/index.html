@@ -106,6 +106,10 @@
         z-index: 1;
         width: min(100%, var(--app-width));
         min-height: 100vh;
+        min-height: -webkit-fill-available;
+        min-height: 100svh;
+        min-height: 100dvh;
+        min-height: calc(var(--actual-vh, 1vh) * 100);
         margin: 0 auto;
         overflow: clip;
         background:
@@ -2348,6 +2352,13 @@
     </audio>
     <script src="https://cdn.jsdelivr.net/npm/embla-carousel@8.5.2/embla-carousel.umd.js"></script>
     <script>
+function setActualVh() {
+    const h = window.visualViewport?.height ?? window.innerHeight;
+    document.documentElement.style.setProperty('--actual-vh', `${h * 0.01}px`);
+}
+setActualVh();
+(window.visualViewport ?? window).addEventListener('resize', setActualVh);
+
       (function () {
         "use strict";
         if ("scrollRestoration" in history)
