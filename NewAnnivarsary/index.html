@@ -5,9 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Annand & Amila - 4th Anniversary</title>
   
+  <!-- Performance Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <!-- Fancybox 5 CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+  
+  <!-- Responsive Video Preloads -->
+  <link rel="preload" href="https://res.cloudinary.com/dticzwbrv/video/upload/v1788592589/Mandela_Invelope_Mobile_wrigzq.webm" as="video" type="video/webm" media="(max-width: 767.98px)" fetchpriority="high" />
+  <link rel="preload" href="https://res.cloudinary.com/dticzwbrv/video/upload/v1788592593/Mandela_Invelope_Desktop_nmcqhe.webm" as="video" type="video/webm" media="(min-width: 768px)" fetchpriority="high" />
+  <!-- Responsive Thumbnails Preloads -->
+  <link rel="preload" href="images/Mandela_Invelope_Mobile_Thumb.webp" as="image" media="(max-width: 767.98px)" fetchpriority="high" />
+  <link rel="preload" href="images/Mandela_Invelope_Desktop_Thumb.webp" as="image" media="(min-width: 768px)" fetchpriority="high" />
+  <!-- Banner Critical Assets Preloads -->
+  <link rel="preload" href="images/Bottom_Design@4x.avif" as="image" type="image/avif" />
+  <link rel="preload" href="images/Middle_Design@4x.avif" as="image" type="image/avif" />
+  <link rel="preload" href="images/Top_Design@4x.avif" as="image" type="image/avif" />
   
   <style>
     :root {
@@ -15,6 +33,55 @@
       --gold: #e0ae6f;
       --gold-light: #f3e5ab;
       --text-light: #f8f8f8;
+    }
+
+    /* Minimal App Loader */
+    #app-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--bg-color);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: all;
+    }
+    #app-loader.loaded {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-spinner {
+      width: 44px;
+      height: 44px;
+      border: 2px solid rgba(224, 174, 111, 0.2);
+      border-top: 2px solid var(--gold);
+      border-radius: 50%;
+      animation: loaderSpin 0.9s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+      box-shadow: 0 0 20px rgba(224, 174, 111, 0.25);
+    }
+    .loader-text {
+      margin-top: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.9;
+      animation: loaderPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes loaderSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes loaderPulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.98); }
+      50% { opacity: 1; transform: scale(1); }
     }
 
     body, html {
@@ -63,25 +130,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    /* Landscape Warning */
-    #landscape-warning {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-color: #000;
-      color: white;
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    @media (max-height: 480px) and (orientation: landscape) {
-      #landscape-warning { display: flex; }
-      #app-container, #intro-overlay { display: none !important; }
     }
 
     /* Intro Overlay */
@@ -172,12 +220,22 @@
       min-height: 100vh;
       min-height: -webkit-fill-available;
       min-height: 100svh;
-      min-height: 100dvh;
+      min-height: 100dvh; 
       min-height: calc(var(--actual-vh, 1vh) * 100);
       display: flex;
       flex-direction: column;
       align-items: center;
       box-sizing: border-box;
+    }
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+    }
+    .hero-text-wrap {
+      text-align: center;
     }
     .couple-portrait {
       position: relative;
@@ -237,6 +295,10 @@
     }
 
     /* Hero Banner Rotating Mandala Ornament */
+    .desktop-mandala {
+      display: none;
+    }
+    
     .hero-mandala {
       /* Parent div bound by aspect-ratio for effortless scaling */
       --mandala-size: min(106%, max(375px, 106vw)); 
@@ -539,30 +601,37 @@
       gap: 15px;
     }
     .venue-text { text-align: left; }
-    .venue-text h3 { margin: 0 0 5px; font-family: 'Great Vibes', cursive; font-size: 1.8rem; font-weight: normal; color: #fff;}
+    .venue-text h3 { margin: 0 0 5px; font-family: 'Great Vibes', cursive; font-size: 1.4rem; font-weight: normal; color: #fff;}
     .venue-text p { margin: 0; font-size: 0.9rem; color: #ccc; }
 
     /* RSVP */
     .rsvp-section {
+      position: relative;
       width: 90%;
       margin: 40px auto;
       border: 1px solid var(--gold);
       border-radius: 15px;
-      padding: 30px 20px;
+      padding: 40px 20px; /* huge top padding to accommodate the absolute positioned mandala */
       text-align: center;
       box-sizing: border-box;
-      background: rgba(255,255,255,0.05);
+      background: rgba(17, 6, 38, 0.8);
+      overflow: hidden;
     }
     .rsvp-title {
+      position: relative;
       color: var(--gold);
-      font-size: 1.8rem;
-      margin-bottom: 20px;
+      font-size: 2.2rem;
+      margin: 0 0 20px 0;
       letter-spacing: 2px;
+      text-shadow: 0 4px 6px rgba(0,0,0,0.5);
+      z-index: 2;
     }
     .rsvp-form {
       display: flex;
       flex-direction: column;
       gap: 15px;
+      position: relative;
+      z-index: 2;
     }
     .form-group {
       display: flex;
@@ -585,13 +654,12 @@
       box-sizing: border-box;
     }
     .radio-group {
-      display: flex;
-      justify-content: space-around;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       width: 100%;
-      gap: 10px;
+      gap: 15px;
     }
     .radio-group label {
-      flex: 1;
       border: 1px solid var(--gold);
       padding: 10px;
       border-radius: 20px;
@@ -680,10 +748,10 @@
       box-sizing: border-box;
     }
     .footer-card {
-      border: 1px solid var(--gold);
+      border: none;
       border-radius: 15px;
       padding: 30px 20px;
-      background: rgba(255,255,255,0.05);
+      background: transparent;
       margin-bottom: 20px;
     }
     .footer-card h2 {
@@ -714,18 +782,291 @@
     }
     
     .gsap-reveal { opacity: 0; transform: translateY(30px); }
+
+    /* --- DESKTOP RESPONSIVE STYLES --- */
+    @media (min-width: 768px) {
+      #app-container, #intro-overlay, #petals-canvas {
+        max-width: 100%;
+      }
+      
+      .content-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto;
+      }
+      
+      .hero-section, .lotus-journey, .rsvp-section, .footer-section {
+        grid-column: span 2;
+        width: 100%;
+      }
+      .hero-section {
+        justify-content: center;
+      }
+      
+      .hero-inner {
+        flex-direction: row-reverse;
+        justify-content: center;
+        gap: clamp(8rem, 10vw,12rem);
+      }
+      
+      .hero-text-wrap {
+        text-align: left;
+        z-index: 5;
+      }
+      
+      .portrait-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .couple-portrait {
+        width: 380px;
+        height: 380px;
+        margin: 0;
+        z-index: 3;
+        box-shadow: 0 0 40px rgba(26, 143, 150, 0.4);
+      }
+      
+      .couple-names {
+        font-size: clamp(5rem, 8vw, 7.5rem);
+        margin-top: 0;
+      }
+      
+      .anniversary-title {
+        font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+        margin-bottom: 15px;
+      }
+      
+      .anniversary-date {
+        font-size: clamp(2rem, 3vw, 2.8rem);
+      }
+      
+      .thoughts-section {
+        grid-column: span 1;
+        width: 90%;
+        max-width: 500px;
+        margin: 40px auto;
+      }
+      
+      .schedule-section, .venue-card {
+        grid-column: span 1;
+        width: 90%;
+        max-width: 600px;
+        margin: 100px auto;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .venue-card {
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .schedule-paper {
+        aspect-ratio: 1.42 / 1;
+        min-height: unset;
+        background-size: 100% 100%;
+        padding: 10% 15%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .lotus-container {
+        max-width: 1000px;
+      }
+      
+      .mobile-mandala {
+        display: none;
+      }
+      
+      .desktop-mandala {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        transform: translate(-50%, -50%);
+        --mandala-size: 672px;
+        z-index: 1;
+        opacity: 0.9;
+      }
+      
+      .rsvp-section {
+        max-width: 900px;
+        padding: 50px 50px; /* extra top padding for mandala */
+      }
+      .rsvp-title {
+        font-size: 3rem;
+        margin-bottom: 40px;
+      }
+      
+      .rsvp-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        text-align: left;
+      }
+      
+      .radio-group {
+        gap: 30px; /* matches the parent grid gap */
+      }
+      
+      .form-group {
+        width: 100%;
+      }
+      
+      .rsvp-form > .form-group:nth-child(3), .submit-btn, .rsvp-form > p {
+        grid-column: span 2;
+        text-align: center;
+      }
+      
+      #extra-fields {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column: span 2;
+        gap: 30px;
+      }
+      
+      .full-width-field {
+        grid-column: span 2;
+      }
+      
+      .form-group label {
+        font-size: 1.1rem;
+      }
+      
+      .radio-group label, .checkbox-item, .radio-group-wrap label {
+        font-size: 1.1rem;
+        padding: 15px;
+      }
+      
+      .radio-group-wrap label {
+        padding: 5px 15px;
+      }
+      
+      .checkbox-item {
+        padding: 5px 15px;
+      }
+      
+      .submit-btn {
+        padding: 15px;
+        font-size: 1.3rem;
+      }
+      
+      .venue-details {
+        justify-content: center;
+        gap: 50px;
+      }
+      
+      .venue-text h3 {
+        font-size: 2.8rem;
+      }
+      
+      .venue-text p {
+        font-size: 1.2rem;
+      }
+      
+      .section-title {
+        font-size: clamp(2.6rem, 5vw, 4rem);
+      }
+      
+      #mfab {
+        right: 40px;
+        bottom: 40px;
+        width: 60px;
+        height: 60px;
+      }
+      
+      #mfab svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Landscape Warning -->
-  <div id="landscape-warning">
-    <p>Please rotate your device to portrait mode for the best experience.</p>
+  <!-- Minimal Royal App Loader -->
+  <div id="app-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading</div>
   </div>
+  <script>
+    (function() {
+      const loader = document.getElementById('app-loader');
+      if (!loader) return;
+
+      let isDismissed = false;
+      function hideAppLoader() {
+        if (isDismissed) return;
+        isDismissed = true;
+        loader.classList.add('loaded');
+        setTimeout(() => {
+          if (loader.parentNode) loader.parentNode.removeChild(loader);
+        }, 600);
+      }
+
+      // Hard ceiling: max 3 seconds guarantee
+      const maxTimer = setTimeout(hideAppLoader, 3000);
+
+      // Verify banner critical images
+      const criticalUrls = [
+        'images/Bottom_Design@4x.avif',
+        'images/Middle_Design@4x.avif',
+        'images/Top_Design@4x.avif',
+        'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=300&h=300&fit=crop'
+      ];
+
+      const imgPromises = criticalUrls.map(url => new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = () => resolve();
+        img.src = url;
+        if (img.complete) resolve();
+      }));
+
+      // Check intro video or its responsive poster readiness
+      const videoPromise = new Promise(resolve => {
+        const video = document.getElementById('intro-video');
+        if (!video) return resolve();
+        if (video.readyState >= 1) return resolve();
+        video.addEventListener('loadeddata', () => resolve(), { once: true });
+        video.addEventListener('loadedmetadata', () => resolve(), { once: true });
+        video.addEventListener('canplay', () => resolve(), { once: true });
+        video.addEventListener('error', () => resolve(), { once: true });
+
+        const isMobile = window.innerWidth < 768;
+        const posterUrl = isMobile ? 'images/Mandela_Invelope_Mobile_Thumb.webp' : 'images/Mandela_Invelope_Desktop_Thumb.webp';
+        const poster = new Image();
+        poster.onload = () => resolve();
+        poster.onerror = () => resolve();
+        poster.src = posterUrl;
+        if (poster.complete) resolve();
+      });
+
+      Promise.all([...imgPromises, videoPromise]).then(() => {
+        setTimeout(() => {
+          clearTimeout(maxTimer);
+          hideAppLoader();
+        }, 150);
+      });
+    })();
+  </script>
 
   <!-- Entry Overlay -->
   <div id="intro-overlay">
-    <video id="intro-video" src="images/Dummy.mp4" playsinline webkit-playsinline></video>
+    <video id="intro-video" playsinline webkit-playsinline disablePictureInPicture preload="auto" poster="images/Mandela_Invelope_Mobile_Thumb.webp">
+      <source src="https://res.cloudinary.com/dticzwbrv/video/upload/v1788592593/Mandela_Invelope_Desktop_nmcqhe.webm" media="(min-width: 768px)" type="video/webm" />
+      <source src="https://res.cloudinary.com/dticzwbrv/video/upload/v1788592589/Mandela_Invelope_Mobile_wrigzq.webm" type="video/webm" />
+    </video>
     <div class="tap-hint" id="tap-hint">Tap to Open</div>
   </div>
 
@@ -735,13 +1076,32 @@
     <div class="content-wrapper">
       <!-- Hero -->
       <header class="hero-section gsap-reveal">
-        <div class="couple-portrait"></div>
-        <h1 class="couple-names">Annand & Amila</h1>
-        <p class="anniversary-title">4th Wedding Anniversary</p>
-        <p class="anniversary-date">June 25 2027</p>
+        <div class="hero-inner">
+          <div class="portrait-container">
+            <!-- Desktop Mandala (Hidden on Mobile) -->
+            <div class="hero-mandala desktop-mandala" aria-hidden="true">
+              <div class="mandala-layer mandala-bottom">
+                <img src="images/Bottom_Design@4x.avif" alt="" class="mandala-img" loading="eager">
+              </div>
+              <div class="mandala-layer mandala-middle">
+                <img src="images/Middle_Design@4x.avif" alt="" class="mandala-img" loading="eager">
+              </div>
+              <div class="mandala-layer mandala-top">
+                <img src="images/Top_Design@4x.avif" alt="" class="mandala-img" loading="eager">
+              </div>
+            </div>
+            
+            <div class="couple-portrait"></div>
+          </div>
+          <div class="hero-text-wrap">
+            <h1 class="couple-names">Annand & Amila</h1>
+            <p class="anniversary-title">4th Wedding Anniversary</p>
+            <p class="anniversary-date">June 25 2027</p>
+          </div>
+        </div>
 
-        <!-- Bottom-Right Rotating Mandala Ornament (Bound by aspect-ratio, child layers in %) -->
-        <div class="hero-mandala" aria-hidden="true">
+        <!-- Bottom-Right Rotating Mandala Ornament (Hidden on Desktop) -->
+        <div class="hero-mandala mobile-mandala" aria-hidden="true">
           <!-- Bottom mandala: Largest, rotates clockwise -->
           <div class="mandala-layer mandala-bottom">
             <img src="images/Bottom_Design@4x.avif" alt="" class="mandala-img" loading="eager">
@@ -775,18 +1135,18 @@
           <!-- Absolute Positioned & Percentage Sized HTML Images with Fancybox Links -->
           <div class="lotus-photos-wrap">
             <a href="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=85" data-fancybox="lotus-gallery" data-caption="Our Journey — Beautiful Beginning" class="lotus-img-link lotus-img-1" aria-label="View photo 1">
-              <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" class="lotus-img" alt="Our Journey - Moment 1">
+              <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" class="lotus-img" alt="Our Journey - Moment 1" loading="lazy" decoding="async">
             </a>
             <a href="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=85" data-fancybox="lotus-gallery" data-caption="Our Journey — Cherished Moments" class="lotus-img-link lotus-img-2" aria-label="View photo 2">
-              <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80" class="lotus-img" alt="Our Journey - Moment 2">
+              <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80" class="lotus-img" alt="Our Journey - Moment 2" loading="lazy" decoding="async">
             </a>
             <a href="https://images.unsplash.com/photo-1516511613036-3daf488d955d?auto=format&fit=crop&w=1200&q=85" data-fancybox="lotus-gallery" data-caption="Our Journey — Growing in Love" class="lotus-img-link lotus-img-3" aria-label="View photo 3">
-              <img src="https://images.unsplash.com/photo-1516511613036-3daf488d955d?auto=format&fit=crop&w=400&q=80" class="lotus-img" alt="Our Journey - Moment 3">
+              <img src="https://images.unsplash.com/photo-1516511613036-3daf488d955d?auto=format&fit=crop&w=400&q=80" class="lotus-img" alt="Our Journey - Moment 3" loading="lazy" decoding="async">
             </a>
           </div>
 
           <!-- Lotus Frame Overlay -->
-          <img src="images/Our_Journey.webp" class="lotus-frame-img" alt="Lotus Frame" />
+          <img src="images/Our_Journey.webp" class="lotus-frame-img" alt="Lotus Frame" loading="lazy" decoding="async" />
         </div>
 
         <!-- Tap Hint -->
@@ -894,7 +1254,7 @@
             </div>
             <div class="form-group">
               <label>Dietary Requirements</label>
-              <textarea id="dietary" rows="2" placeholder="Allergies, vegetarian, etc."></textarea>
+              <textarea id="dietary" rows="1" placeholder="Allergies, vegetarian, etc."></textarea>
             </div>
             <div class="form-group">
               <label>Song Request</label>
@@ -902,7 +1262,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group full-width-field">
             <label>Wishes for the Couple</label>
             <textarea id="wishes" rows="3" placeholder="Share a blessing or wish..."></textarea>
           </div>
@@ -915,8 +1275,6 @@
       <!-- Footer -->
       <footer class="footer-section gsap-reveal">
         <div class="footer-card">
-          <h2>Thank You</h2>
-          <p>We look forward to sharing this joy with you all.</p>
           <p class="signature">With Love, Annand & Amila</p>
         </div>
         <p class="made-with-love">Designed by <a href="https://invitebox.in/" target="_blank" rel="noreferrer">Invite&nbsp;Box</a></p>
@@ -944,7 +1302,7 @@
     </svg>
   </button>
   
-  <audio id="bg-music" src="images/folk-acoustic-summer-walk-152722.mp3" loop></audio>
+  <audio id="bg-music" src="images/folk-acoustic-summer-walk-152722.mp3" preload="none" loop></audio>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -964,6 +1322,65 @@ setActualVh();
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+
+    // Responsive Video Intro Setup
+    let curtainOpened = false;
+    const MOBILE_VIDEO_SRC = "https://res.cloudinary.com/dticzwbrv/video/upload/v1788592589/Mandela_Invelope_Mobile_wrigzq.webm";
+    const DESKTOP_VIDEO_SRC = "https://res.cloudinary.com/dticzwbrv/video/upload/v1788592593/Mandela_Invelope_Desktop_nmcqhe.webm";
+    const MOBILE_POSTER_SRC = "images/Mandela_Invelope_Mobile_Thumb.webp";
+    const DESKTOP_POSTER_SRC = "images/Mandela_Invelope_Desktop_Thumb.webp";
+
+    function checkIsMobileView() {
+      const isLandscape = window.matchMedia && window.matchMedia('(orientation: landscape)').matches;
+      if (isLandscape && window.innerWidth >= 480) {
+        return false;
+      }
+      return window.innerWidth < 768;
+    }
+
+    function updateVideoSourceAndPoster() {
+      if (curtainOpened) return;
+      const video = document.getElementById("intro-video");
+      if (!video) return;
+
+      const isMobile = checkIsMobileView();
+      const targetSrc = isMobile ? MOBILE_VIDEO_SRC : DESKTOP_VIDEO_SRC;
+      const targetPoster = isMobile ? MOBILE_POSTER_SRC : DESKTOP_POSTER_SRC;
+
+      if (targetPoster && video.getAttribute("poster") !== targetPoster) {
+        video.poster = targetPoster;
+        video.setAttribute("poster", targetPoster);
+      }
+
+      if (video.getAttribute("data-active-src") !== targetSrc) {
+        video.setAttribute("data-active-src", targetSrc);
+        const source = video.querySelector("source");
+        if (source) {
+          source.src = targetSrc;
+        }
+        video.src = targetSrc;
+        video.load();
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", updateVideoSourceAndPoster);
+    let videoResizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(videoResizeTimer);
+      videoResizeTimer = setTimeout(updateVideoSourceAndPoster, 120);
+    });
+    window.addEventListener("orientationchange", () => {
+      updateVideoSourceAndPoster();
+      setTimeout(updateVideoSourceAndPoster, 150);
+      setTimeout(updateVideoSourceAndPoster, 350);
+    });
+    if (window.screen && window.screen.orientation) {
+      window.screen.orientation.addEventListener("change", () => {
+        updateVideoSourceAndPoster();
+        setTimeout(updateVideoSourceAndPoster, 150);
+        setTimeout(updateVideoSourceAndPoster, 350);
+      });
+    }
 
     document.addEventListener("DOMContentLoaded", () => {
       // 2. Entry Sequence
@@ -996,6 +1413,7 @@ setActualVh();
       function unlockScroll() {
         if(scrollUnlocked) return;
         scrollUnlocked = true;
+        curtainOpened = true;
         
         introOverlay.style.opacity = '0';
         setTimeout(() => {
@@ -1041,7 +1459,8 @@ setActualVh();
       const extraFields = document.getElementById('extra-fields');
       document.querySelectorAll('input[name="attendance"]').forEach(radio => {
         radio.addEventListener('change', () => {
-          extraFields.style.display = (radio.value === 'Joyfully Attending') ? 'flex' : 'none';
+          extraFields.style.display = (radio.value === 'Joyfully Attending') ? '' : 'none';
+          if (window.ScrollTrigger) ScrollTrigger.refresh();
         });
       });
 

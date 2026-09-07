@@ -1,0 +1,28 @@
+Act as a Senior UI/UX Designer and Expert Frontend Developer specializing in responsive design systems. 
+
+Task: Refactor a mobile-only digital invitation website into a fully responsive, dynamic, multi-device experience (Mobile, Tablet, Desktop, Wide Desktop). Do not simply scale up or expand elements linearly. You must re-architect the layout, typography, and component behavior for each breakpoint.
+
+Apply the following UI/UX and Engineering specifications:
+
+1. /anti-gravity-float (Layout Alignment Rule):
+   - Do not use rigid, absolute positioning.
+   - Elements must "float" and re-align organically based on the viewport.
+   - Use CSS Grid for complex desktop layouts and Flexbox for fluid mobile/tablet stacks.
+   - Ensure white space expands proportionally to maintain a premium, uncluttered luxury invitation aesthetic on larger screens.
+
+2. Responsive Elements & Asset Scaling:
+   - Section-by-Section Refinement: Analyze each section (Hero, Event Details, RSVP, Timeline, Gallery). Shift from single-column mobile stacks to multi-column desktop layouts where appropriate.
+   - Fluid Typography: Use CSS clamp() for typography (e.g., clamp(1.5rem, 4vw, 3.5rem)) so headlines and text scale beautifully without breaking layout bounds.
+   - Dynamic Imagery: Implement responsive image sets (srcset) or aspect-ratio bounding boxes so photos scale up in size and resolution on desktop without cropping out vital content.
+
+3. Interactive & Dynamic States:
+   - Convert static elements into dynamic, interactive components (e.g., hover states for desktop, touch-optimized targets for mobile).
+   - Ensure the RSVP form transitions from a full-screen mobile modal to a sleek, integrated layout component on desktop.
+
+
+check other common instructions which was for another invitation which may be common in current file too so check RESPONSIVE_INVITATION_GUIDE.md file but remember that classes may be different but functions may be same 
+
+Output the complete, production-ready HTML and  CSS code for this transformation.
+
+Note for Video Intro (Responsive Video Loader):
+When handling responsive video loading (swapping mobile/desktop video intro sources based on window resize and device rotation), implement a fast debounce (e.g. 120ms) on the window 'resize' event listener, and listen to 'orientationchange' (and screen.orientation change) with staggered timeouts (150ms, 350ms) to ensure mobile rotation reflows are caught properly.
