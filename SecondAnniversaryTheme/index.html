@@ -26,10 +26,13 @@
   <!-- Fancybox for Galleries -->
   <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
   <link rel="dns-prefetch" href="https://res.cloudinary.com">
-  <link rel="preload" href="https://res.cloudinary.com/dticzwbrv/video/upload/v1786946080/Aniversaryflower_zj350r.mp4" as="video" type="video/mp4" crossorigin="anonymous">
-  <link rel="preload" href="images/watercolor_bg.avif" as="image">
+  <link rel="preload" href="https://res.cloudinary.com/dticzwbrv/video/upload/v1786946080/Aniversaryflower_zj350r.mp4" as="video" type="video/mp4" crossorigin="anonymous" media="(max-width: 1023px)">
+  <link rel="preload" href="https://res.cloudinary.com/dticzwbrv/video/upload/v1788776878/Aniversaryflower_Desktop_ps2elb.mp4" as="video" type="video/mp4" crossorigin="anonymous" media="(min-width: 1024px)">
+  <link rel="preload" href="images/watercolor_bg.avif" as="image" media="(max-width: 1023px)">
+  <link rel="preload" href="images/watercolor_bg_Desktop.webp" as="image" media="(min-width: 1024px)">
   <link rel="preload" href="images/hero_couple.png" as="image">
-  <link rel="preload" href="images/AniversaryflowerThumb.webp" as="image">
+  <link rel="preload" href="images/AniversaryflowerThumb.webp" as="image" media="(max-width: 1023px)">
+  <link rel="preload" href="images/Aniversaryflower_desktopThumb.webp" as="image" media="(min-width: 1024px)">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 
   <style>
@@ -894,11 +897,195 @@
       border-radius: 20px;
       box-shadow: 0 2px 10px rgba(180, 140, 160, 0.12);
       display: inline-block;
+      margin-top: 16px;
     }
     .made-with-love a {
       color: var(--pink-deep);
       text-decoration: none;
       font-weight: 700;
+    }
+
+    /* --- DESKTOP RESPONSIVE CSS --- */
+    @media (min-width: 1024px) {
+      /* Remove mobile column cap */
+      #app, #intro-layer, #petals-canvas {
+        max-width: none;
+      }
+      #app {
+        background: var(--cream) url('images/watercolor_bg_Desktop.webp') center top / 100% auto repeat-y;
+      }
+      
+      /* Landscape Warning disable */
+      #landscape-warning { display: none !important; }
+      
+      /* Reset FAB */
+      #audio-ctrl {
+        right: 40px !important;
+        bottom: 40px !important;
+        left: auto !important;
+      }
+      
+      /* Hero Section: Custom 2-column grid */
+      .hero-sec {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto auto auto;
+        align-items: center;
+        gap: 20px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 40px 40px;
+        min-height: 100vh;
+      }
+      .hero-tagline {
+        grid-column: 1 / 2;
+        grid-row: 1;
+        justify-self: center;
+        margin-bottom: 0;
+        align-self: end;
+        font-size: 1.1rem;
+      }
+      .hero-names {
+        grid-column: 1 / 2;
+        grid-row: 2;
+        justify-self: center;
+        font-size: clamp(3.5rem, 5vw, 5.5rem);
+        text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 1);
+        z-index: 2;
+      }
+      .hero-subtitle {
+        grid-column: 1 / 2;
+        grid-row: 3;
+        justify-self: center;
+        margin-bottom: 0;
+        align-self: start;
+        font-size: 1.3rem;
+      }
+      .countdown {
+        grid-column: 1 / 2;
+        grid-row: 4;
+        justify-self: center;
+        margin-top: 20px;
+        align-self: start;
+      }
+      .hero-img-wrap {
+        grid-column: 2 / 3;
+        grid-row: 1 / 5;
+        justify-self: center;
+        width: 100%;
+        max-width: 450px;
+      }
+      .scroll-down-indicator {
+        grid-column: 1 / -1;
+        grid-row: 5;
+        justify-self: center;
+        margin-top: 50px;
+      }
+      
+      /* Memories Carousel: 3 cards */
+      .embla__slide {
+        flex: 0 0 33.333%;
+      }
+      
+      /* Love Note */
+      .love-note {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+      }
+      .love-note p {
+        font-size: 1.8rem;
+        line-height: 2;
+      }
+      .love-note .sign-off {
+        font-size: 2.5rem;
+        margin-top: 30px;
+      }
+      
+      /* Celebration Schedule: Horizontal */
+      .itinerary-sec {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .schedule {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 40px 0;
+      }
+      .schedule::before {
+        top: 50%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 2px;
+        transform: translateY(-50%);
+        bottom: auto;
+      }
+      .schedule-item {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto 1fr;
+        width: 20%;
+        gap: 16px;
+        margin-bottom: 0;
+        justify-items: center;
+      }
+      .schedule-item:nth-child(odd) > .schedule-art { grid-row: 1; align-self: end; }
+      .schedule-item:nth-child(odd) > .schedule-node { grid-row: 2; align-self: center; }
+      .schedule-item:nth-child(odd) > .schedule-text { grid-row: 3; align-self: start; }
+      
+      .schedule-item:nth-child(even) > .schedule-text { grid-row: 1; align-self: end; }
+      .schedule-item:nth-child(even) > .schedule-node { grid-row: 2; align-self: center; }
+      .schedule-item:nth-child(even) > .schedule-art { grid-row: 3; align-self: start; }
+      .schedule-node {
+        margin: 0 auto;
+      }
+      .schedule-text {
+        text-align: center !important;
+      }
+      .schedule-art {
+        width: 150px;
+        height: 150px;
+      }
+      
+      /* RSVP Form */
+      .rsvp-card {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 50px;
+      }
+      .form-row-two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .form-control {
+        padding: 16px 20px;
+        font-size: 1.1rem;
+      }
+      .btn-submit {
+        padding: 18px;
+        font-size: 1.2rem;
+      }
+      .radio-group {
+        gap: 20px;
+      }
+      .radio-group--wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .radio-group--wrap .radio-btn {
+        min-width: 0;
+      }
+      
+      /* Footer */
+      .footer-card {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 50px;
+      }
     }
   </style>
 </head>
@@ -940,9 +1127,7 @@
 
   <!-- Video Intro Overlay -->
   <div id="intro-layer">
-    <video id="intro-video" playsinline webkit-playsinline preload="auto" poster="images/AniversaryflowerThumb.webp" disablePictureInPicture>
-      <source src="https://res.cloudinary.com/dticzwbrv/video/upload/v1786946080/Aniversaryflower_zj350r.mp4" type="video/mp4">
-    </video>
+    <video id="intro-video" playsinline webkit-playsinline preload="auto" disablePictureInPicture></video>
     <div class="tap-overlay" id="tap-overlay">
       <span class="tap-text">Tap anywhere to open</span>
     </div>
@@ -1141,16 +1326,18 @@
           </div>
 
           <form id="rsvpForm" novalidate>
-            <div class="form-group">
-              <label for="guestName">Name(s) *</label>
-              <input type="text" id="guestName" class="form-control" placeholder="Your full name" required>
-              <div class="invalid-feedback">Please enter your name.</div>
-            </div>
+            <div class="form-row-two">
+              <div class="form-group">
+                <label for="guestName">Name(s) *</label>
+                <input type="text" id="guestName" class="form-control" placeholder="Your full name" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
 
-            <div class="form-group">
-              <label for="guestPhone">Phone *</label>
-              <input type="tel" id="guestPhone" class="form-control" placeholder="Your phone number" required>
-              <div class="invalid-feedback">Please enter a valid phone number.</div>
+              <div class="form-group">
+                <label for="guestPhone">Phone *</label>
+                <input type="tel" id="guestPhone" class="form-control" placeholder="Your phone number" required>
+                <div class="invalid-feedback">Please enter a valid phone number.</div>
+              </div>
             </div>
 
             <div class="form-group">
@@ -1324,13 +1511,44 @@ setActualVh();
       }, 1000);
     }
 
-    // Video Pre-Warmup & Blob Fetch (from oldCode.html pattern for 0ms mobile playback)
-    const INTRO_VIDEO_URL = "https://res.cloudinary.com/dticzwbrv/video/upload/v1786946080/Aniversaryflower_zj350r.mp4";
+    // Responsive Video Setup & Pre-Fetch
+    const MOBILE_SRC = "https://res.cloudinary.com/dticzwbrv/video/upload/v1786946080/Aniversaryflower_zj350r.mp4";
+    const DESKTOP_SRC = "https://res.cloudinary.com/dticzwbrv/video/upload/v1788776878/Aniversaryflower_Desktop_ps2elb.mp4";
+    const MOBILE_POSTER = "images/AniversaryflowerThumb.webp";
+    const DESKTOP_POSTER = "images/Aniversaryflower_desktopThumb.webp";
     let videoBlobReady = false;
 
-    if (introVideo) {
+    function isMobileView() {
+      if (window.matchMedia("(orientation: landscape)").matches && window.innerWidth >= 480) return false;
+      return window.innerWidth < 1024;
+    }
+
+    function syncVideoSrc() {
+      if (introOpened || !introVideo) return;
+      const targetSrc = isMobileView() ? MOBILE_SRC : DESKTOP_SRC;
+      const targetPoster = isMobileView() ? MOBILE_POSTER : DESKTOP_POSTER;
+      
+      if (introVideo.getAttribute('src') === targetSrc) return;
+      introVideo.src = targetSrc;
+      introVideo.poster = targetPoster;
       introVideo.load();
-      fetch(INTRO_VIDEO_URL, { mode: 'cors' })
+    }
+    
+    if (introVideo) {
+      syncVideoSrc();
+      
+      let rszVid;
+      window.addEventListener("resize", () => {
+        clearTimeout(rszVid);
+        rszVid = setTimeout(syncVideoSrc, 120);
+      }, { passive: true });
+      window.addEventListener("orientationchange", () => {
+        syncVideoSrc();
+        setTimeout(syncVideoSrc, 150);
+        setTimeout(syncVideoSrc, 350);
+      });
+
+      fetch(introVideo.src, { mode: 'cors' })
         .then(res => {
           if (!res.ok) throw new Error('Fetch failed');
           return res.blob();
@@ -1655,8 +1873,14 @@ setActualVh();
       const appEl = document.getElementById('app');
 
       function resizeCanvas() {
-        canvas.width = appEl ? appEl.offsetWidth : window.innerWidth;
-        canvas.height = window.innerHeight;
+        const dpr = window.devicePixelRatio || 1;
+        const w = appEl ? appEl.offsetWidth : window.innerWidth;
+        const h = window.visualViewport?.height ?? window.innerHeight;
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
       resizeCanvas();
 
