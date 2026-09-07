@@ -811,12 +811,30 @@ JS:
     const events  = [...form.querySelectorAll('[name="events"]:checked')].map(el => el.value).join(', ') || 'None';
     const note    = document.getElementById('f-note')?.value.trim() || '';
 
-    let msg = `*RSVP — [Event Name]*\n\n`;
-    msg += `*Name:* ${name}\n*Phone:* ${phone}\n*Attending:* ${attend}\n`;
-    if (!attend.toLowerCase().includes('declin')) {
-      msg += `*Guests:* ${count}\n*Events:* ${events}\n`;
+    // ── STYLIZED LUXURY WHATSAPP MESSAGE ──
+    const isAccepting = !attend.toLowerCase().includes('declin');
+    const attendBadge = isAccepting ? '✅ *Joyfully Accept* 🥂' : '🕊️ *Regretfully Decline*';
+
+    let msg = `✨ *[Event Name] — RSVP* ✨\n`;
+    msg += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+    msg += `👤 *Guest:* ${name}\n`;
+    msg += `📞 *Phone:* ${phone}\n`;
+    msg += `💌 *Response:* ${attendBadge}\n`;
+
+    if (isAccepting) {
+      msg += `👥 *Total Guests:* ${count}\n`;
+      if (events && events !== 'None') {
+        msg += `🗓️ *Events Attending:* ${events}\n`;
+      }
     }
-    if (note) msg += `\n*Note:* ${note}`;
+
+    if (note) {
+      msg += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+      msg += `💬 *Personal Note:*\n_${note}_\n`;
+    }
+
+    msg += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+    msg += `_Sent via Digital Invitation_`;
 
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 900;
     const base = isMobile ? 'https://api.whatsapp.com/send' : 'https://web.whatsapp.com/send';
@@ -828,6 +846,15 @@ JS:
   });
 })();
 ```
+
+> [!TIP]
+> **WhatsApp RSVP Message Styling Rules:**
+> - Never send raw plain text like `Name: John`.
+> - Always wrap headlines with decorative emojis (`✨ *Event Name — RSVP* ✨`).
+> - Use visual divider lines (`━━━━━━━━━━━━━━━━━━━━━━`) to structure sections neatly.
+> - Use contextual emojis for labels (`👤 Guest:`, `📞 Phone:`, `💌 Response:`, `👥 Guests:`, `🗓️ Events:`, `💬 Note:`).
+> - Format notes and quotes in italics `_“message”_` for a heartfelt handwritten look.
+> - Format attendance badges clearly (`✅ *Joyfully Accept* 🥂` vs `🕊️ *Regretfully Decline*`).
 
 ---
 
@@ -1052,8 +1079,10 @@ function initScrollReveal() {
 
 ## 15. FOOTER
 
+Always include safe area padding so home indicators on iPhone and gesture navigation on Android do not collide with footer text:
+
 ```html
-<footer style="padding: clamp(40px,6vh,80px) 20px; text-align: center; border-top: 1px solid rgba(231,191,133,0.2);">
+<footer class="footer" style="padding: clamp(40px,6vh,80px) max(20px, env(safe-area-inset-right, 0px)) calc(clamp(40px,6vh,80px) + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px)); text-align: center; border-top: 1px solid rgba(231,191,133,0.2);">
   <p style="font-family:var(--script); font-size:clamp(1.8rem,5vw,2.8rem); color:var(--primary);">Thank You</p>
   <p style="color:var(--text-muted); font-size:0.85rem; margin-top:8px; letter-spacing:0.05em;">With the blessings of our elders and the warmth of your presence</p>
   <p style="margin-top:24px; font-size:0.75rem; color:var(--text-muted);">
@@ -1072,6 +1101,7 @@ function initScrollReveal() {
 - [ ] `body { overflow: hidden }` on load; `body.unlocked` added only when intro ends
 - [ ] Intro type decided: video (music after video) or envelope (music on tap)
 - [ ] FAB: `bottom: max(72px, calc(env(safe-area-inset-bottom,0px) + 38px))`
+- [ ] Footer safe area padding: `padding-bottom` includes `env(safe-area-inset-bottom, 0px)`
 - [ ] FAB hidden initially, `.visible` added in `reveal()` function
 - [ ] Scroll indicator hidden initially, `.visible` added in `reveal()` function
 - [ ] All overlays use 5-line height cascade
@@ -1081,6 +1111,7 @@ function initScrollReveal() {
 - [ ] Canvas: petal count capped 10–30, resize uses `visualViewport?.height`
 - [ ] `prefers-reduced-motion` skips canvas loop and disables transitions
 - [ ] RSVP validates name + phone before sending
+- [ ] WhatsApp message properly encoded with stylized emojis and borders
 - [ ] WhatsApp URL: `api.whatsapp.com` for mobile, `web.whatsapp.com` for desktop
 - [ ] `initScrollReveal()` called AFTER `body.unlocked` — not before
 - [ ] Embla autoplay pauses via IntersectionObserver when off-screen
