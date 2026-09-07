@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>50th Golden Anniversary - Robert & Margaret</title>
+  <meta name="description" content="Join us in celebrating 50 years of love, laughter, and cherished memories at Robert & Margaret's 50th Golden Anniversary on October 24, 2026.">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="50th Golden Anniversary - Robert & Margaret">
+  <meta property="og:description" content="Join us in celebrating 50 years of love, laughter, and cherished memories at Robert & Margaret's 50th Golden Anniversary on October 24, 2026.">
+  <meta property="og:image" content="images/og_image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="50th Golden Anniversary - Robert & Margaret">
+  <meta name="twitter:description" content="Join us in celebrating 50 years of love, laughter, and cherished memories at Robert & Margaret's 50th Golden Anniversary on October 24, 2026.">
+  <meta name="twitter:image" content="images/og_image.png">
+
+  <!-- Google Fonts & Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
+
+  <!-- Responsive Intro Video Thumbnails & Posters -->
+  <link rel="preload" href="images/invelopThumb.jpg" as="image" fetchpriority="high" media="(max-width: 1023px)">
+  <link rel="preload" href="images/Invelopegoldenblue_Desktop.webp" as="image" fetchpriority="high" media="(min-width: 1024px)">
+
+  <!-- First Banner Section Assets (Critical for LCP & FCP) -->
+  <link rel="preload" href="images/hero_couple_portrait_1786449715336.png" as="image" fetchpriority="high">
+  <link rel="preload" href="images/Ribbon.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="images/DateBanner.webp" as="image" fetchpriority="high">
+
+  <!-- Fancybox 5 CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+  <style>
+    :root {
+      --navy: #0b162c;
+      --gold: #e7bf85;
+      --gold-light: #fcf6ba;
+      --gold-dark: #b38728;
+      --gold-gradient: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.7);
+      --max-w: 480px;
+    }   
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      background: #111111;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden; /* Locked initially */
+    }
+    body.unlocked { overflow: auto; }
+
+    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+    .script { font-family: 'Alex Brush', cursive; }
+
+    #app {
+      width: 100%; 
+      max-width: var(--max-w);
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      min-height: 100svh;
+      min-height: 100dvh;
+      min-height: calc(var(--actual-vh, 1vh) * 100); 
+      margin: 0 auto;
+      background: var(--navy);
+      position: relative;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Landscape Warning */
+    #landscape-warning {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh; height: -webkit-fill-available; height: 100svh; height: 100dvh; height: calc(var(--actual-vh, 1vh) * 100);
+      background: #111111;
+      color: var(--gold);
+      z-index: 999999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+    #landscape-warning svg {
+      margin-bottom: 20px;
+      animation: rotatePhone 2s infinite ease-in-out;
+    }
+    @keyframes rotatePhone {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(-90deg); }
+      100% { transform: rotate(-90deg); }
+    }
+    @media screen and (orientation: landscape) and (max-height: 600px) {
+      #landscape-warning { display: flex; }
+      #app { display: none !important; }
+    }
+
+    /* Particles Canvas (Petals Animation) */
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 100%; max-width: var(--max-w);
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Minimal Global Loader */
+    #global-loader {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh; height: -webkit-fill-available; height: 100svh; height: 100dvh; height: calc(var(--actual-vh, 1vh) * 100);
+      background: var(--navy);
+      z-index: 9999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    #global-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-ring {
+      width: 44px;
+      height: 44px;
+      border: 3px solid rgba(231, 191, 133, 0.2);
+      border-top-color: var(--gold, #e7bf85);
+      border-radius: 50%;
+      animation: spinLoader 0.8s linear infinite;
+    }
+    @keyframes spinLoader {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Envelope Layer */
+    #curtain-layer {
+      position: fixed;
+      top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: var(--max-w); height: 100vh; height: -webkit-fill-available; height: 100svh; height: 100dvh; height: calc(var(--actual-vh, 1vh) * 100);
+      z-index: 100;
+      background: #000;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 1s ease-in-out;
+      cursor: pointer;
+    }
+    #curtain-video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .tap-overlay {
+      position: absolute; 
+      top: 50px;
+      z-index: 110;
+      text-align: center;
+      animation: tapPulse 2s infinite;
+      padding: 40px;
+    }
+    .tap-text {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light); 
+      font-size: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      border: 1px solid var(--gold);
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: rgba(11, 22, 44, 0.7);
+    }
+    @keyframes tapPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+
+    /* Scroll Indicator */
+    .scroll-down-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      color: var(--gold);
+    }
+    .scroll-down-indicator.visible { opacity: 1; transform: translateY(0); }
+    .scroll-down-indicator.hidden { opacity: 0 !important; }
+    .scroll-down-indicator span {
+      font-size: 0.7rem; letter-spacing: 1.5px;
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .scroll-down-indicator svg {
+      width: 24px; height: 24px; stroke: var(--gold);
+      animation: scrollBounce 1.5s infinite ease-in-out;
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(8px); opacity: 1; }
+    }
+
+    /* Content Wrapper */
+    #main-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-sec {
+      padding: 40px 12px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .hero-archway {
+      position: relative;
+      width: 80%;
+      max-width: 380px;
+      border: 2px solid var(--gold);
+      border-radius: 180px 180px 0 0;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .hero-archway::before {
+      content: ''; position: absolute;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px dashed var(--gold);
+      border-radius: 170px 170px 0 0;
+      pointer-events: none;
+    }
+    .hero-img-wrap {
+      width: 100%; height: 320px;
+      border-radius: 160px 160px 0 0;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .hero-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .hero-couple-title {
+      position: relative;
+      z-index: 10;
+      font-size: 2.8rem;
+      color: var(--gold-light);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 15px rgba(212,175,55,0.8);
+      margin-top: 10px;
+      margin-bottom: -32px;
+      text-align: center;
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    
+    .ribbon {
+      position: relative;
+      margin-top: -86px;
+      z-index: 5;
+      max-width: 90%;
+    }
+    .ribbon img {
+      width: 100%;
+      opacity: 0;
+      transform: scale(0.4);
+    }
+    body.unlocked .ribbon img {
+      animation: ribbonZoomIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes ribbonZoomIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      65% {
+        opacity: 1;
+        transform: scale(1.15);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .hero-details {
+      margin-top: 15px;
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    body.unlocked .hero-details {
+      animation: heroDetailsSwipeUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
+    }
+
+    @keyframes heroDetailsSwipeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .date-banner-wrap {
+      position: relative;
+      width: 90%;
+      max-width: 420px;
+      margin: 0 auto;
+      container-type: inline-size;
+    }
+
+    .date-banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .banner-text-left {
+      position: absolute;
+      top: 16%;
+      left: 23%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #12213a;
+      font-family: 'Playfair Display', serif;
+      line-height: 1.05;
+      text-align: center;
+    }
+
+    .banner-text-left .month {
+      font-size: 7.5cqw;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .banner-text-left .day {
+      font-size: 13cqw;
+      font-weight: 700;
+      margin-top: 1cqw;
+    }
+
+    .banner-text-right {
+      position: absolute;
+      top: 30%;
+      right: 23%;
+      transform: translateX(50%);
+      color: #12213a;
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .banner-text-right .year {
+      font-size: 13cqw;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .banner-text-bottom {
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .banner-text-bottom .time {
+      font-size: 7.5cqw;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+    }
+    
+    /* --- MEMORIES SECTION --- */
+    .timeline-sec {
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .constellation {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .timeline-title {
+      text-align: center; color: var(--gold); font-size: 3rem; margin-bottom: 60px;
+      position: relative; z-index: 2;
+    }
+    .memories-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .memory-item {
+      position: relative;
+      width: 280px;
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .memory-item:nth-child(odd) {
+      transform: translateX(-15px) rotate(-3deg) translateY(35px);
+    }
+    .memory-item:nth-child(even) {
+      transform: translateX(15px) rotate(4deg) translateY(35px);
+    }
+    .memory-item:nth-child(odd).revealed {
+      opacity: 1;
+      transform: translateX(-15px) rotate(-3deg) translateY(0);
+    }
+    .memory-item:nth-child(even).revealed {
+      opacity: 1;
+      transform: translateX(15px) rotate(4deg) translateY(0);
+    }
+    .polaroid-frame {
+      background: var(--navy); 
+      padding: 8px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 0 6px var(--navy), 0 0 0 8px var(--gold);
+      position: relative;
+      z-index: 2;
+    }
+    .polaroid-frame a {
+      display: block;
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .polaroid-frame img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid rgba(212,175,55,0.3);
+      transition: transform 0.4s ease;
+    }
+    .polaroid-frame a:hover img {
+      transform: scale(1.04);
+    }
+    .memory-year {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 2.2rem;
+      text-align: center;
+      position: absolute;
+      width: 100%;
+      bottom: -45px;
+      left: 0;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+    }
+    .camera-accent {
+      position: absolute;
+      bottom: -15px; 
+      right: -15px;
+      width: 60px;
+      height: 60px;
+      background: var(--navy);
+      border: 1.5px solid var(--gold);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transform: rotate(15deg);
+      z-index: 5;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .memory-item:nth-child(even) .camera-accent {
+      right: auto;
+      left: -15px;
+      transform: rotate(-15deg);
+      opacity: 0;
+    }
+
+    .memory-item.revealed:nth-child(odd) .camera-accent {
+      animation: cameraZoomShakeOdd 1.1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
+    }
+    .memory-item.revealed:nth-child(even) .camera-accent {
+      animation: cameraZoomShakeEven 1.1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
+    }
+
+    @keyframes cameraZoomShakeOdd {
+      0% {
+        opacity: 0;
+        transform: scale(0.2) rotate(15deg);
+      }
+      40% {
+        opacity: 1;
+        transform: scale(1.35) rotate(24deg);
+      }
+      55% {
+        transform: scale(1.05) rotate(6deg);
+      }
+      70% {
+        transform: scale(1.2) rotate(20deg);
+      }
+      85% {
+        transform: scale(1.05) rotate(12deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(15deg);
+      }
+    }
+
+    @keyframes cameraZoomShakeEven {
+      0% {
+        opacity: 0;
+        transform: scale(0.2) rotate(-15deg);
+      }
+      40% {
+        opacity: 1;
+        transform: scale(1.35) rotate(-24deg);
+      }
+      55% {
+        transform: scale(1.05) rotate(-6deg);
+      }
+      70% {
+        transform: scale(1.2) rotate(-20deg);
+      }
+      85% {
+        transform: scale(1.05) rotate(-12deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(-15deg);
+      }
+    }
+    
+    /* --- FORMAL INVITE TEXT --- */
+    .invite-sec {
+      padding: 40px 20px; text-align: center;
+    }
+    .invite-box {
+      border: 1px solid var(--gold);
+      padding: 30px 20px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .invite-box.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .invite-box::before, .invite-box::after {
+      content: '✦'; position: absolute; color: var(--gold); font-size: 1.5rem;
+      background: var(--navy); padding: 0 10px;
+    }
+    .invite-box::before { top: -15px; left: 50%; transform: translateX(-50%); }
+    .invite-box::after { bottom: -15px; left: 50%; transform: translateX(-50%); }
+    .invite-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; line-height: 1.8; color: var(--gold-light);
+    }
+
+    /* --- ITINERARY --- */
+    .itinerary-sec { padding: 60px 20px; position: relative; overflow: hidden; }
+    .itinerary-bg-line {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 1; pointer-events: none;
+    }
+    .event-item {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 70px; position: relative; z-index: 2;
+    }
+    .event-item:nth-child(even) { flex-direction: row-reverse; }
+    
+    .event-time {
+      flex: 1;
+      text-align: center;
+      padding: 15px 10px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+    }
+    .event-item.revealed .event-time {
+      animation: itineraryTextSlideUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes itineraryTextSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .event-time::before {
+      content: '';
+      position: absolute;
+      width: 170px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(11, 22, 44, 0.95) 0%, rgba(11, 22, 44, 0.7) 50%, rgba(11, 22, 44, 0) 75%);
+      z-index: 1;
+      pointer-events: none;
+      filter: blur(6px);
+    }
+    
+    .event-time h4 {
+      color: var(--gold);
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      font-weight: normal;
+      position: relative;
+      z-index: 2;
+    }
+    .event-time p {
+      color: var(--gold-light);
+      font-size: 1.2rem;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .event-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px;
+      position: relative;
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    .event-image::before {
+      content: '';
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgb(201 144 59 / 67%) 0%, rgb(163 126 72 / 57%) 30%, rgb(11 22 44 / 82%) 70%);
+      z-index: 1;
+      pointer-events: none;
+      filter: blur(8px);
+    }
+    .event-image img {
+      width: 100%;
+      height: auto;
+      max-height: 160px;
+      object-fit: contain;
+      position: relative;
+      z-index: 2;
+    }
+    .event-item.revealed .event-image {
+      animation: itineraryImgZoomIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
+    }
+    @keyframes itineraryImgZoomIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* --- VENUE --- */
+    .venue-sec {
+      padding: 40px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .venue-sec.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .venue-img { width: 100%; max-width: 350px; margin: 0 auto 20px; display: block; mix-blend-mode: screen;}
+    .venue-address {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .venue-address strong { color: var(--gold); font-size: 1.2rem; display: block; margin-bottom: 5px;}
+
+    /* --- GLASSMORPHISM & RSVP --- */
+    .glass-sec { padding: 40px 20px; }
+    .glass-box {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .glass-box.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .glass-box h3 { color: var(--gold); font-size: 2rem; margin-bottom: 15px; }
+    .glass-box p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+    
+    .form-group { margin-bottom: 20px; text-align: left; }
+    .form-group label {
+      display: block; color: var(--gold); font-family: 'Playfair Display', serif;
+      margin-bottom: 8px; font-size: 1.1rem;
+    }
+    .form-control {
+      width: 100%; padding: 12px 15px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      border-radius: 8px;
+      outline: none; transition: 0.3s;
+    }
+    .form-control:focus { border-color: var(--gold); background: rgba(0,0,0,0.5); }
+    .form-control::placeholder { color: rgba(255,255,255,0.4); }
+    textarea.form-control { min-height: 80px; resize: vertical; }
+
+    /* Bootstrap-style Validation Warnings */
+    .alert {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .alert-danger {
+      background-color: rgba(220, 53, 69, 0.15);
+      border: 1px solid rgba(220, 53, 69, 0.5);
+      color: #ff6b6b;
+    }
+    .alert-danger svg {
+      flex-shrink: 0;
+    }
+
+    .form-control.is-invalid {
+      border-color: #dc3545 !important;
+      background: rgba(220, 53, 69, 0.08) !important;
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+    }
+    .form-control.is-valid {
+      border-color: #198754 !important;
+      box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25) !important;
+    }
+    .invalid-feedback {
+      display: none;
+      width: 100%;
+      margin-top: 6px;
+      font-size: 0.825rem;
+      color: #ff6b6b;
+      font-family: 'Montserrat', sans-serif;
+      text-align: left;
+    }
+    .form-control.is-invalid ~ .invalid-feedback {
+      display: block;
+    }
+
+    .radio-group { display: flex; gap: 10px; }
+    .radio-btn { flex: 1; text-align: center; cursor: pointer; }
+    .radio-btn input { display: none; }
+    .radio-btn span {
+      display: block; padding: 10px; border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--text-muted); font-size: 0.8rem; transition: 0.3s;
+    }
+    .radio-btn input:checked + span {
+      background: var(--gold-gradient); color: var(--navy); font-weight: 600; border-color: var(--gold);
+    }
+
+    .checkbox-item {
+      display: flex; align-items: center; margin-bottom: 10px; cursor: pointer;
+    }
+    .checkbox-item input {
+      appearance: none; width: 20px; height: 20px;
+      border: 1px solid var(--gold); border-radius: 4px;
+      margin-right: 12px; position: relative;
+    }
+    .checkbox-item input:checked { background: var(--gold); }
+    .checkbox-item input:checked::after {
+      content: '✓'; position: absolute; color: var(--navy);
+      top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; font-size: 12px;
+    }
+    .checkbox-item span { color: var(--text); font-size: 0.9rem; }
+
+    .btn-submit {
+      width: 100%; padding: 15px;
+      background: var(--gold-gradient);
+      color: var(--navy);
+      border: none; border-radius: 30px;
+      font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 600;
+      letter-spacing: 1px; cursor: pointer;
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+      margin-top: 10px; transition: transform 0.2s;
+    }
+    .btn-submit:active { transform: scale(0.98); }
+
+    /* Audio Controller */
+    .audio-ctrl {
+      position: fixed; bottom: 25px; right: calc(50% - 240px + 25px);
+      width: 50px; height: 50px;
+      background: var(--gold-gradient);
+      color: var(--navy); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 100;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+    @media (max-width: 480px) { .audio-ctrl { right: 25px; } }
+
+    /* Footer */
+    .footer {
+      background: var(--navy);
+      padding: 40px 20px calc(40px + env(safe-area-inset-bottom, 0px));
+      padding-left: max(20px, env(safe-area-inset-left, 0px));
+      padding-right: max(20px, env(safe-area-inset-right, 0px));
+      text-align: center;
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      margin-top: 20px;
+    }
+    .footer h2 { color: var(--gold); font-size: 2.5rem; margin-bottom: 10px; }
+    .footer p { color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; }
+
+    /* Minimal Global Luxury Loader */
+    #global-loader {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background: var(--navy);
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s;
+    }
+    #global-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-ring {
+      width: 44px;
+      height: 44px;
+      border: 2px solid rgba(231, 191, 133, 0.2);
+      border-top: 2px solid var(--gold);
+      border-radius: 50%;
+      animation: loaderSpin 0.9s linear infinite;
+      box-shadow: 0 0 16px rgba(231, 191, 133, 0.25);
+    }
+    .loader-text {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      animation: loaderPulse 1.4s ease-in-out infinite alternate;
+    }
+    @keyframes loaderSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes loaderPulse {
+      0% { opacity: 0.4; }
+      100% { opacity: 0.95; }
+    }
+
+    /* --- DESKTOP RESPONSIVE (LUXURY THEME) --- */
+    @media (min-width: 1024px) {
+      #app { max-width: 100%; }
+      #curtain-layer, #particles-canvas { max-width: none !important; }
+      #landscape-warning { display: none !important; }
+      #app { display: flex !important; }
+
+      /* Hero Section */
+      .hero-sec {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 50px;
+        padding: 80px 40px 40px;
+        max-width: 1300px;
+        margin: 0 auto;
+        align-items: center;
+        row-gap: 0;
+      }
+      .hero-couple-title { 
+        grid-column: 1 / 2;
+        grid-row: 1;
+        font-size: clamp(3rem, 5vw, 5rem); 
+        margin-bottom: 20px; 
+      }
+      .hero-archway { 
+        grid-column: 1 / 2;
+        grid-row: 2;
+        max-width: 450px; 
+        margin: 0 auto; 
+        width: 100%; 
+      }
+      .hero-img-wrap { height: 420px; }
+      .ribbon { 
+        grid-column: 1 / 2;
+        grid-row: 3;
+        margin-top: -86px; 
+        margin-left: auto; 
+        margin-right: auto;
+        max-width: 500px;
+        padding-right: 0; 
+      }
+      .ribbon img { max-width: 100%; }
+      .hero-details { 
+        grid-column: 2 / 3;
+        grid-row: 1 / 4;
+        align-self: center;
+        justify-self: center; 
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0; 
+        transform: none; 
+        opacity: 1; 
+        margin-top: 0; 
+      }
+      .date-banner-wrap { 
+        width: 100%;
+        max-width: 600px; 
+      }
+      .scroll-down-indicator {
+        grid-column: 1 / -1;
+        justify-self: center;
+        margin-top: 50px;
+      }
+
+      /* Memories Grid */
+      .timeline-sec { padding: 100px 50px; }
+      .timeline-title { font-size: clamp(3rem, 5vw, 5rem); margin-bottom: 80px; }
+      .memories-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 80px 60px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .memory-item { width: 100%; max-width: 400px; justify-self: center; }
+      .memory-item:nth-child(odd) { transform: rotate(-3deg); }
+      .memory-item:nth-child(even) { transform: rotate(3deg); }
+      .memory-item:nth-child(odd).revealed { transform: rotate(-3deg); }
+      .memory-item:nth-child(even).revealed { transform: rotate(3deg); }
+      .polaroid-frame a, .polaroid-frame img { height: 380px; }
+      .memory-year { font-size: 3rem; bottom: -50px; }
+      
+      /* Invite Section */
+      .invite-sec { padding: 80px 50px 40px; }
+      .invite-box { max-width: 800px; margin: 0 auto; padding: 50px; }
+      .invite-text { font-size: 1.8rem; line-height: 2; }
+      .invite-box::before { font-size: 2rem; top: -20px; }
+      .invite-box::after { font-size: 2rem; bottom: -20px; }
+
+      /* Itinerary */
+      .itinerary-sec {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        padding: 40px 50px 100px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .itinerary-bg-line { display: none; }
+      .itinerary-sec .event-item, .itinerary-sec .event-item:nth-child(even) {
+        flex-direction: column;
+        flex: 1;
+        margin-bottom: 0;
+      }
+      .event-time { padding: 30px 10px; }
+      .event-time::before { width: 260px; height: 180px; filter: blur(10px); }
+      .event-time h4 { font-size: 3.5rem; }
+      .event-time p { font-size: 1.6rem; }
+      .event-image { margin-top: 30px; }
+      .event-image::before { width: 240px; height: 240px; filter: blur(12px); }
+      .event-image img { max-height: 240px; }
+
+      /* Venue and Glass Sec Layout */
+      #main-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      #particles-canvas, .hero-sec, .timeline-sec, .invite-sec, .itinerary-sec, .footer {
+        grid-column: 1 / -1;
+      }
+      .venue-sec {
+        grid-column: 1 / 2;
+        padding: 60px 40px;
+        align-self: center;
+      }
+      .venue-img { max-width: 350px; margin-bottom: 40px; }
+      .venue-sec h2 { font-size: 3rem; margin-bottom: 15px; }
+      .venue-address { font-size: 1.2rem; }
+      .venue-address strong { font-size: 1.4rem; margin-bottom: 10px; }
+
+      .glass-sec {
+        display: contents; /* Allows children to participate in #main-content grid */
+      }
+      .glass-box:first-child {
+        grid-column: 2 / 3;
+        align-self: center;
+        margin: 60px 40px;
+        padding: 50px;
+      }
+      .glass-box:last-child {
+        grid-column: 1 / -1;
+        margin: 0 80px 80px;
+        max-width: 900px;
+        justify-self: center;
+        width: calc(100% - 160px);
+        padding: 50px;
+      }
+      .glass-box h3 { font-size: 2.5rem; }
+      .glass-box p, .form-group label { font-size: 1.2rem; }
+      .form-control { padding: 15px 20px; font-size: 1.1rem; }
+      .btn-submit { padding: 18px; font-size: 1.2rem; }
+      .radio-group { gap: 20px; }
+      .radio-btn span { font-size: 1rem; padding: 12px; }
+
+      /* Audio Controller */
+      .audio-ctrl {
+        right: 40px;
+        bottom: 40px;
+      }
+
+      /* Footer Desktop Padding */
+      .footer {
+        padding: 60px 40px calc(60px + env(safe-area-inset-bottom, 0px));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Minimal Global Luxury Loader -->
+  <div id="global-loader">
+    <div class="loader-ring"></div>
+    <div class="loader-text">Loading Invitation</div>
+  </div>
+  <script>
+    function setActualVh() {
+      const h = window.visualViewport?.height ?? window.innerHeight;
+      document.documentElement.style.setProperty('--actual-vh', `${h * 0.01}px`);
+    }
+    setActualVh();
+    (window.visualViewport ?? window).addEventListener('resize', setActualVh);
+
+    (function() {
+      const loader = document.getElementById('global-loader');
+      let isHidden = false;
+
+      function hideLoader() {
+        if (isHidden) return;
+        isHidden = true;
+        if (loader) {
+          loader.classList.add('hidden');
+          setTimeout(() => { loader.style.display = 'none'; }, 500);
+        }
+      }
+
+      // Hard max timeout: exactly 3 seconds
+      const maxTimer = setTimeout(hideLoader, 3000);
+
+      // Critical assets for FCP / LCP & Hero experience
+      const isDesktop = window.innerWidth >= 1024;
+      const criticalImages = [
+        isDesktop ? 'images/Invelopegoldenblue_Desktop.webp' : 'images/invelopThumb.jpg',
+        'images/hero_couple_portrait_1786449715336.png',
+        'images/Ribbon.webp',
+        'images/DateBanner.webp'
+      ];
+
+      let pending = criticalImages.length + 1; // images + intro video
+
+      function onItemDone() {
+        pending--;
+        if (pending <= 0) {
+          clearTimeout(maxTimer);
+          hideLoader();
+        }
+      }
+
+      // 1. Check Curtain Video Readiness
+      const video = document.getElementById('curtain-video');
+      if (!video || video.readyState >= 2) {
+        onItemDone();
+      } else {
+        const onVideoReady = () => {
+          video.removeEventListener('canplay', onVideoReady);
+          video.removeEventListener('loadeddata', onVideoReady);
+          video.removeEventListener('error', onVideoReady);
+          onItemDone();
+        };
+        video.addEventListener('canplay', onVideoReady, { once: true });
+        video.addEventListener('loadeddata', onVideoReady, { once: true });
+        video.addEventListener('error', onVideoReady, { once: true });
+      }
+
+      // 2. Check Critical Banner Images
+      criticalImages.forEach(src => {
+        const img = new Image();
+        let finished = false;
+        function markDone() {
+          if (!finished) {
+            finished = true;
+            onItemDone();
+          }
+        }
+        img.onload = markDone;
+        img.onerror = markDone;
+        img.src = src;
+        if (img.complete) markDone();
+      });
+    })();
+  </script>
+
+  <!-- Landscape Warning -->
+  <div id="landscape-warning">
+    <svg viewBox="0 0 24 24" width="64" height="64" fill="currentColor">
+      <path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm1 18H7V5h10v14z"/>
+    </svg>
+    <h2>Please Rotate Your Device</h2>
+    <p>This invitation is crafted for portrait viewing.</p>
+  </div>
+
+  <!-- Audio Elements -->
+  <div id="audio-ctrl" class="audio-ctrl">
+    <svg id="icon-muted" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="display:none;">
+      <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+    </svg>
+    <svg id="icon-unmuted" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+      <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+    </svg>
+  </div>
+  <audio id="bg-music" loop>
+    <source src="images/folk-acoustic-summer-walk-152722.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="app">
+    
+    <!-- Envelope Layer -->
+    <div id="curtain-layer">
+      <video id="curtain-video" playsinline webkit-playsinline preload="auto" poster="images/invelopThumb.jpg" disablePictureInPicture fetchpriority="high">
+        <source src="https://res.cloudinary.com/dticzwbrv/video/upload/v1786530126/Invelopegoldenblue_v8tslz.mp4" type="video/mp4">
+      </video>
+      <div class="tap-overlay" id="tap-overlay">
+        <span class="tap-text">Tap anywhere to open</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+      <canvas id="particles-canvas"></canvas>
+      
+      <!-- Section 1: Hero -->
+      <section class="hero-sec">
+        <div class="hero-couple-title script">Robert &amp; Margaret</div>
+        <div class="hero-archway">
+          <div class="hero-img-wrap">
+            <img src="images/hero_couple_portrait_1786449715336.png" alt="Couple Portrait" loading="eager" fetchpriority="high">
+          </div>
+        </div>
+        <div class="ribbon"><img src="images/Ribbon.webp" alt="A life time of love" loading="eager" fetchpriority="high"></div>
+        
+        <div class="hero-details">
+          <div class="date-banner-wrap">
+            <img src="images/DateBanner.webp" alt="Anniversary Date Banner" class="date-banner-img" loading="eager" fetchpriority="high">
+            <div class="banner-text-left">
+              <span class="month">OCT</span>
+              <span class="day">24</span>
+            </div>
+            <div class="banner-text-right">
+              <span class="year">2026</span>
+            </div>
+            <div class="banner-text-bottom">
+              <span class="time">6:00 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="scroll-down-indicator" id="scroll-down-indicator">
+          <span>Scroll Down</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Section 2: Memories Grid -->
+      <section class="timeline-sec">
+        <!-- Constellation decorations -->
+        <svg class="constellation" style="top: 5%; left: 5%;" viewBox="0 0 100 100" width="120" height="120">
+           <path d="M10,10 L50,40 L90,10" stroke="rgba(212,175,55,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="2,2"/>
+           <circle cx="10" cy="10" r="2.5" fill="var(--gold-light)" />
+           <circle cx="50" cy="40" r="3.5" fill="var(--gold-light)" />
+           <circle cx="90" cy="10" r="2.5" fill="var(--gold-light)" />
+        </svg>
+        <svg class="constellation" style="top: 35%; right: 2%;" viewBox="0 0 100 100" width="100" height="100">
+           <path d="M20,80 L50,20 L80,70" stroke="rgba(212,175,55,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="2,2"/>
+           <circle cx="20" cy="80" r="2" fill="var(--gold-light)" />
+           <circle cx="50" cy="20" r="3" fill="var(--gold-light)" />
+           <circle cx="80" cy="70" r="2" fill="var(--gold-light)" />
+        </svg>
+        <svg class="constellation" style="bottom: 15%; left: 8%;" viewBox="0 0 100 100" width="110" height="110">
+           <path d="M20,20 L60,80 L90,30" stroke="rgba(212,175,55,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="2,2"/>
+           <circle cx="20" cy="20" r="3" fill="var(--gold-light)" />
+           <circle cx="60" cy="80" r="2" fill="var(--gold-light)" />
+           <circle cx="90" cy="30" r="2.5" fill="var(--gold-light)" />
+        </svg>
+
+        <h2 class="timeline-title script">Our Memories</h2>
+        <div class="memories-grid">
+          
+          <div class="memory-item">
+            <div class="polaroid-frame">
+              <a href="images/WeddingDay.webp" data-fancybox="gallery" data-caption="1994 - Our Wedding Day">
+                <img src="images/WeddingDay.webp" alt="1994" loading="lazy">
+              </a>
+              <div class="camera-accent">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="m70.361 58.585 8.312 23.371c.356 1.001 1.06 1.793 1.949 2.194l20.764 9.355c2.933 1.322 2.933 5.996 0 7.317l-20.764 9.355c-.889.4-1.594 1.193-1.949 2.194l-8.312 23.371c-1.174 3.302-5.327 3.302-6.501 0l-8.312-23.371c-.356-1.001-1.06-1.794-1.949-2.194l-20.764-9.355c-2.934-1.322-2.934-5.996 0-7.317l20.764-9.355c.889-.401 1.593-1.194 1.949-2.194l8.312-23.371c1.174-3.302 5.327-3.302 6.501 0M143.347 1.837l6.165 17.336c.264.742.787 1.33 1.446 1.628l15.403 6.939c2.176.981 2.176 4.447 0 5.428l-15.403 6.939c-.66.297-1.182.885-1.446 1.628l-6.165 17.336c-.871 2.449-3.951 2.449-4.822 0l-6.165-17.336c-.264-.742-.786-1.33-1.446-1.628l-15.403-6.939c-2.176-.98-2.176-4.447 0-5.428l15.403-6.939c.66-.297 1.182-.885 1.446-1.628l6.165-17.336c.87-2.449 3.951-2.449 4.822 0" fill="CurrentColor" opacity="1" data-original="CurrentColor" class=""></path><circle cx="433.005" cy="24.817" r="18.149" transform="rotate(-76.7 433.127 24.81)" fill="CurrentColor" opacity="1" data-original="CurrentColor" class=""></circle><circle cx="31.925" cy="38.6" r="7.829" transform="rotate(-80.8 31.918 38.604)" fill="CurrentColor" opacity="1" data-original="CurrentColor" class=""></circle><path d="m475.184 99.652 6.165 17.336c.264.742.787 1.33 1.446 1.628l15.402 6.939c2.176.98 2.176 4.448 0 5.428l-15.402 6.939c-.659.297-1.182.885-1.446 1.628l-6.165 17.336c-.871 2.449-3.951 2.449-4.822 0l-6.165-17.336c-.264-.742-.786-1.33-1.446-1.628l-15.403-6.939c-2.176-.98-2.176-4.447 0-5.428l15.403-6.939c.659-.297 1.182-.885 1.446-1.628l6.165-17.336c.87-2.449 3.951-2.449 4.822 0M433.863 213.015h-37.434l-3.176-16.217c-3.637-18.572-20.011-32.051-38.936-32.051h-15.119V145.33h19.915c17.426 0 31.603-14.178 31.603-31.604V63.849c0-17.426-14.178-31.604-31.603-31.604H219.456c-17.426 0-31.604 14.177-31.604 31.604v49.877c0 17.427 14.178 31.604 31.604 31.604h19.914v19.417h-17.345c-18.965 0-35.346 13.514-38.952 32.132l-3.126 16.136h-38.404a37.04 37.04 0 0 0-15.807-10.4v-2.853c0-19.166-15.592-34.758-34.757-34.758H72.176c-19.166 0-34.757 15.592-34.757 34.758v2.852c-14.654 4.904-25.248 18.751-25.248 35.034V475.06c0 20.369 16.571 36.94 36.94 36.94h384.75199999999995c25.918 0 47.004-21.086 47.004-47.003V260.019c0-25.918-21.086-47.004-47.004-47.004m-225.774-99.289V63.849c0-6.268 5.1-11.367 11.367-11.367h139.656c6.268 0 11.366 5.099 11.366 11.367v49.877c0 6.268-5.099 11.367-11.366 11.367H219.456c-6.267 0-11.367-5.099-11.367-11.367m51.518 31.604h59.354v19.417h-59.354zm-71.313 87.922c4.847 0 9.013-3.436 9.934-8.194l4.712-24.33c1.767-9.122 9.793-15.743 19.085-15.743h132.293c9.271 0 17.295 6.604 19.077 15.704l4.777 24.39a10.12 10.12 0 0 0 9.93 8.174h45.763c14.76 0 26.767 12.008 26.767 26.767v27.056h-83.874c-20.768-25.293-52.267-41.456-87.472-41.456s-66.704 16.163-87.472 41.456h-50.826V237.65c0-1.489-.099-2.954-.271-4.397h37.577zm100.99 32.603c51.233 0 92.914 41.681 92.914 92.914s-41.681 92.914-92.914 92.914-92.914-41.681-92.914-92.914 41.681-92.914 92.914-92.914M72.176 185.242H90.98c8.007 0 14.521 6.514 14.521 14.521v.945H57.656v-.945c0-8.007 6.513-14.521 14.52-14.521M32.407 475.06V237.648c0-9.211 7.493-16.704 16.703-16.704h64.934c9.21 0 16.704 7.493 16.704 16.704V475.06c0 9.21-7.494 16.704-16.704 16.704H49.11c-9.21-.001-16.703-7.494-16.703-16.704m401.456 16.703H146.977a36.7 36.7 0 0 0 4.009-16.704V299.217h42.129c-10.758 17.309-16.982 37.716-16.982 59.552 0 62.391 50.759 113.151 113.151 113.151s113.151-50.759 113.151-113.151c0-21.836-6.224-42.244-16.982-59.552h75.177v165.78c0 14.759-12.008 26.766-26.767 26.766" fill="CurrentColor" opacity="1" data-original="CurrentColor" class=""></path><path d="M289.284 426.32c37.247 0 67.551-30.303 67.551-67.551s-30.304-67.551-67.551-67.551-67.551 30.303-67.551 67.551 30.304 67.551 67.551 67.551m0-122.96c30.553 0 55.409 24.856 55.409 55.409s-24.856 55.409-55.409 55.409-55.409-24.856-55.409-55.409 24.856-55.409 55.409-55.409M360.738 76.359c0-7.811-6.356-14.166-14.167-14.166H231.997c-7.811 0-14.167 6.355-14.167 14.166v24.856c0 7.812 6.356 14.167 14.167 14.167h114.574c7.811 0 14.167-6.355 14.167-14.167zm-12.142 24.856a2.027 2.027 0 0 1-2.025 2.025H231.997a2.027 2.027 0 0 1-2.025-2.025V76.359c0-1.116.908-2.024 2.025-2.024h114.574c1.117 0 2.025.908 2.025 2.024zM57.447 341.744l-.264-.003c-5.586-.143-9.999-4.787-9.856-10.373a730 730 0 0 0 0-38.747c-.142-5.586 4.27-10.231 9.856-10.374 5.549-.149 10.231 4.269 10.374 9.856a749 749 0 0 1 0 39.781c-.141 5.499-4.642 9.86-10.11 9.86M57.442 268.062c-5.588 0-10.118-4.53-10.118-10.118v-3.786c0-5.588 4.53-10.118 10.118-10.118s10.118 4.53 10.118 10.118v3.786c.001 5.588-4.53 10.118-10.118 10.118" fill="CurrentColor" opacity="1" data-original="CurrentColor" class=""></path><circle cx="302.571" cy="372.021" r="18.902" transform="rotate(-45 302.526 372.105)" fill="CurrentColor" opacity="1" data-original="CurrentColor" class=""></circle></g></svg>
+              </div>
+            </div>
+            <div class="memory-year">1994</div>
+          </div>
+
+          <div class="memory-item">
+            <div class="polaroid-frame">
+              <a href="images/timeline_tree_1786449900552.png" data-fancybox="gallery" data-caption="1982 - Early Memories">
+                <img src="images/timeline_tree_1786449900552.png" alt="1982" loading="lazy">
+              </a>
+              <div class="camera-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" x="0" y="0" viewBox="0 0 682.667 682.667" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><defs><clipPath id="a" clipPathUnits="userSpaceOnUse"><path d="M0 512h512V0H0Z" fill="currentColor" opacity="1" data-original="currentColor"></path></clipPath></defs><g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 682.667)"><path d="M0 0v-259.75c0-8.285-6.716-15-15-15h-467c-8.284 0-15 6.715-15 15v345c0 8.284 6.716 15 15 15h467c8.284 0 15-6.716 15-15V35" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(504.5 294.25)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h-34a5 5 0 0 0-5 5v305a5 5 0 0 0 5 5h427a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5H35" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(76.5 49.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="m0 0-24.749 24.749" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(37.5 364.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="m0 0 23.812 23.812" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(474.5 364.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="m0 0-24.877 24.877" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(499.377 24.623)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="m0 0 25 25" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(12.5 24.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h-33" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(212 134.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h-32.566C-48.751 0-61.5-13.262-61.5-29.448V-85" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(138 134.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0v-20.872C0-32-8.92-41.021-20.047-41.021h.098C-31.077-41.021-40-32-40-20.872V0" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(178.5 155)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h-9.415C-18.604 0-26.5-7.436-26.5-16.625v-.133C-26.5-25.947-18.604-34-9.415-34H-2" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(98 240.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0v38.506C0 64.808 20.939 86.5 47.242 86.5h47.624c23.13 0 42.6-16.561 46.913-38.425" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(87.5 241)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h14.761C23.848 0 31.39 6.459 32.83 15.138 33.121 16.889 34.658 18 36.432 18h48.243c1.781 0 3.312-1.034 3.605-2.79.5-3.003 1.678-5.722 3.45-8.042" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(98 240.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h9.915C19.104 0 27-7.436 27-16.625v-.133C27-25.947 19.104-34 9.915-34H.187" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(413.5 240.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h33.066C49.046 0 62-12.954 62-28.934v-54.233" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(373.5 134.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h-31.673c-.433 0-1.482-.064-1.911-.082" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(332 134.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0a109 109 0 0 1 3.928 3.731c5.244 4.386 8.58 10.977 8.58 18.347a23.8 23.8 0 0 1-5.371 15.089 3.516 3.516 0 0 0 0 4.468 23.8 23.8 0 0 1 5.371 15.089 23.82 23.82 0 0 1-6.454 16.338s-1.728 1.847-4.49 4.25" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(425.129 128.87)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0q.284.249.563.501" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(424.565 128.37)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0a23.8 23.8 0 0 1 3.317 12.156c0 6.867-2.896 13.056-7.532 17.416-2.079 1.955-2.544 5.034-1.398 7.648a23.8 23.8 0 0 1 2.001 9.582c0 13.203-10.703 23.906-23.906 23.906v0q-.848 0-1.68-.059c-3.265-.228-6.321 1.814-7.227 4.96-2.874 9.975-12.067 17.272-22.967 17.272v0a23.8 23.8 0 0 1-15.62-5.814c-2.55-2.206-6.4-2.206-8.95 0a23.8 23.8 0 0 1-15.62 5.814v0c-10.901 0-20.093-7.297-22.967-17.272-.906-3.146-3.962-5.188-7.228-4.96a24 24 0 0 1-1.679.059v0c-11.289 0-20.75-7.825-23.256-18.347" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(432.933 238.278)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0c.375.13.724.175 1.144.175h69.604C72.771.175 74-1.241 74-3.264V-7.66c0-6.07 5.332-11.165 11.402-11.165H96" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(317.5 259.325)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0v15.57C0 31.393-12.663 44.5-28.486 44.5H-60.5" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(336.5 52)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h-31.841C-47.663 0-60.5-13.107-60.5-28.93V-44.5" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(236 96.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0v-26.028C0-58.663 25.951-85 58.585-85h-.084C91.135-85 117-58.663 117-26.028V0" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(197.5 201.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0v-21.5c0-10.878-8.55-20.038-19.429-20.038h-.063C-30.371-41.538-39-32.378-39-21.5V0" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(275.5 118)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h10.66C19.642 0 27-7.454 27-16.436v-.131C27-25.549 19.642-33 10.66-33H.5" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(314.5 201.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h-10.66C-19.642 0-27-7.454-27-16.436v-.131C-27-25.549-19.642-33-10.66-33H0" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(197.5 201.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0v17.899C0 56.467 30.769 87.5 69.337 87.5h.087C107.992 87.5 139 56.467 139 17.899V0" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(186.5 202)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0h13.822c8.812 0 16.137 6.377 17.628 14.801.308 1.736 1.833 3.199 3.596 3.199h47.081c1.763 0 3.289-1.463 3.596-3.199C87.214 6.377 94.54 0 103.352 0H117" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(197.5 201.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0v-26.437C0-59.82-26.891-86.863-60.274-86.863c-14.716 0-28.169 5.255-38.615 13.99" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(413.5 240.5)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0c0 15.188-12.312 27.5-27.5 27.5v0C-42.688 27.5-55 15.188-55 0v0c0-15.188 12.312-27.5 27.5-27.5v0C-12.312-27.5 0-15.188 0 0" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(283.5 465)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="m0 0 120.821-57.782" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(282.18 452.282)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="m0 0-121.524-58.123" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(230.524 452.623)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0v-20.872C0-32-8.92-41.021-20.047-41.021h.098C-31.077-41.021-40-32-40-20.872V0" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(373.3 155)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path><path d="M0 0c-10.461-8.792-23.958-14.084-38.726-14.084C-72.109-14.084-99 12.959-99 46.342v26.437" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(197.5 167.721)" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor"></path></g></g></svg>
+              </div>
+            </div>
+            <div class="memory-year">1982</div>
+          </div>
+
+          <div class="memory-item">
+            <div class="polaroid-frame">
+              <a href="images/MidEra.webp" data-fancybox="gallery" data-caption="2006 - Growing Together">
+                <img src="images/MidEra.webp" alt="2006" loading="lazy">
+              </a>
+              <div class="camera-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" x="0" y="0" viewBox="0 0 70 70" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M48.95 39.08a.75.75 0 0 0 1.017-.3 3.28 3.28 0 0 1 4.465-1.32.75.75 0 1 0 .722-1.315 4.78 4.78 0 0 0-6.504 1.917.75.75 0 0 0 .3 1.017M41.367 50.049c-.145.421-.077.887.18 1.247a8.12 8.12 0 0 0 8.89 3.055 8.115 8.115 0 0 0 5.8-7.393 1.38 1.38 0 0 0-.525-1.145 1.4 1.4 0 0 0-1.256-.24L42.29 49.165a1.4 1.4 0 0 0-.923.884m13.365-3.04a6.61 6.61 0 0 1-4.72 5.904 6.62 6.62 0 0 1-7.146-2.355z" fill="currentColor" opacity="1" data-original="currentColor" class=""></path><path d="M31.073 63.392c1.513-.544 3.037-1.857 4.455-3.782 1.75 1.966 3.482 3.163 5.155 3.553a9.7 9.7 0 0 0 2.177.225c7.64 0 20.709-6.75 23.49-12.645 1.258-2.667.726-7.174-1.458-12.366-2.294-5.455-6.707-12.001-10.977-13.484-.991-.338-2.167-.473-3.49-.42.11-1.551-.525-2.868-1.56-3.735a4.475 4.475 0 0 0-6.3.53l-.096.113-.117-.099a4.45 4.45 0 0 0-3.262-1.041c-3.968.336-5.517 5.312-2.5 7.863l.725.614a35 35 0 0 0-3.034 1.877c-6.572-3.74-16.188-5.906-20.776-3.686C6.937 30.087.235 47.747 4.135 54.02c3.797 6.105 20.157 11.806 26.938 9.372m8.144-41.657a2.95 2.95 0 0 1 2.166.693l.694.586a.75.75 0 0 0 1.06-.092l.576-.69a2.964 2.964 0 0 1 4.186-.346 2.96 2.96 0 0 1 .346 4.18l-4.738 5.602a.247.247 0 0 1-.348.03l-5.601-4.74c-2.015-1.703-.956-5 1.659-5.223m-.68 8.016 3.654 3.092c.734.62 1.837.53 2.461-.206l4.738-5.601c.268-.317.468-.67.636-1.035 1.32-.099 2.493 0 3.4.31C56.66 27.433 60.9 32.753 63.51 38.96c1.989 4.73 2.544 8.895 1.484 11.144-2.798 5.93-17.58 13.09-23.97 11.6-1.422-.332-3.013-1.503-4.623-3.379 3.205-5.095 5.201-12.537 5.05-17.633.803.166.897.422 1.271.422a.75.75 0 0 0 .36-1.408 4.8 4.8 0 0 0-1.748-.549c-.137-1.06-.387-2.024-.78-2.837-.83-1.714-2.593-3.382-4.86-4.862a34 34 0 0 1 2.842-1.706M14.157 28.26c5.827-2.82 22.217 2.868 25.045 8.713C42 42.754 36.606 59.81 30.566 61.98 24.393 64.202 8.875 58.8 5.41 53.228c-3.364-5.41 2.88-22.13 8.75-24.969" fill="currentColor" opacity="1" data-original="currentColor" class=""></path><path d="M15.885 31.396c1.644-.711 4.205-.755 6.062-.989-1.975-.931-4.666-1.23-6.654-.39-2.01.881-3.538 3.187-4.097 5.273 1.444-1.335 3.1-3.224 4.69-3.894M27.29 42.255a3.28 3.28 0 0 1 4.424 1.452.75.75 0 0 0 1.341-.67 4.78 4.78 0 0 0-6.441-2.12.75.75 0 1 0 .676 1.338M15.341 38.325a3.28 3.28 0 0 1 4.422 1.456.75.75 0 0 0 1.34-.677 4.78 4.78 0 0 0-6.444-2.115.75.75 0 1 0 .682 1.336M27.12 50.396l-12.05-3.962c-.91-.297-1.839.387-1.823 1.33a8.115 8.115 0 0 0 5.575 7.568 8.11 8.11 0 0 0 8.976-2.783c.576-.753.224-1.858-.677-2.153m-7.83 3.511a6.61 6.61 0 0 1-4.538-6l11.778 3.828a6.615 6.615 0 0 1-7.24 2.172M33.628 12.837a3.714 3.714 0 0 0-4.978 1.59 3.7 3.7 0 0 0-4.957 1.627 3.703 3.703 0 0 0 1.616 4.996l5.204 2.656c.76.389 1.69.087 2.077-.673l2.656-5.204a3.704 3.704 0 0 0-1.618-4.992m.282 4.31-2.715 5.223-5.204-2.656a2.205 2.205 0 0 1-.963-2.976 2.2 2.2 0 0 1 2.967-.96l.644.328a.75.75 0 0 0 1.012-.33l.32-.639a2.217 2.217 0 0 1 2.978-.962 2.204 2.204 0 0 1 .96 2.972M43.864 8.34a3.45 3.45 0 0 0-4.318-2.137 3.453 3.453 0 0 0-2.228 4.359l1.648 5.084a1.474 1.474 0 0 0 1.86.95l5.084-1.649a3.453 3.453 0 0 0 2.224-4.356 3.455 3.455 0 0 0-4.27-2.251m1.583 5.18-5.054 1.664-1.648-5.085a1.954 1.954 0 0 1 1.262-2.468 1.95 1.95 0 0 1 2.46 1.257l.204.63a.75.75 0 0 0 .948.48l.62-.205a1.957 1.957 0 0 1 2.47 1.264 1.954 1.954 0 0 1-1.262 2.463" fill="currentColor" opacity="1" data-original="currentColor" class=""></path></g></svg>
+              </div>
+            </div>
+            <div class="memory-year">2006</div>
+          </div>
+
+          <div class="memory-item">
+            <div class="polaroid-frame">
+              <a href="images/Today.webp" data-fancybox="gallery" data-caption="2026 - Golden Anniversary">
+                <img src="images/Today.webp" alt="2026" loading="lazy">
+              </a>
+              <div class="camera-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" x="0" y="0" viewBox="0 0 682.667 682.667" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><defs><clipPath id="a" clipPathUnits="userSpaceOnUse"><path d="M0 512h512V0H0Z" fill="currentColor" opacity="1" data-original="currentColor"></path></clipPath></defs><g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 682.667)"><path d="M0 0c0-15.619 12.662-28.281 28.28-28.281h168.392c15.619 0 28.281 12.662 28.281 28.281v346.177c0 15.619-12.662 28.281-28.281 28.281H28.28C12.662 374.458 0 361.796 0 346.177Z" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(176.3 127.542)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0h-26.188v60.857H0c16.805 0 30.429-13.624 30.429-30.428v-.001C30.429 13.624 16.805 0 0 0" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(427.441 304.237)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0h-26.188v60.857H0c16.805 0 30.429-13.623 30.429-30.428S16.805 0 0 0" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(427.441 243.38)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0h-26.188v60.857H0c16.805 0 30.429-13.623 30.429-30.428S16.805 0 0 0" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(427.441 182.523)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0h-26.188v60.856H0c16.805 0 30.429-13.623 30.429-30.428S16.805 0 0 0" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(427.441 121.666)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="m0 0 35.9 39.82s88.595 9.81 121.954 49.44H37.185c-15.619 0-28.28 12.661-28.28 28.28v245.299c0 33.4-15.821 61.25-47.401 67.48-6.94 1.36-13.379-4.02-13.379-11.09v-24.093" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(167.395 10)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0c-.033-16.432-2.989-32.731-8.827-48.093-8.051-21.188-11.247-56.548-11.247-92.981L-61.387-180.5" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(115.517 317.167)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0c-15.871 0-28.736 12.866-28.736 28.736v12.211h57.472V28.736C28.736 12.866 15.871 0 0 0" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(288.868 461.053)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(115.52 360.072)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0c-14.064-20.049-43.77-20.049-57.834 0l4.6 35.217c7.042-3.806 15.097-5.964 23.663-5.964A49.1 49.1 0 0 1-4.35 36.186z" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(318.076 260.447)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0v-20.293c-.942-26.265-22.654-48.284-49.861-48.284-26.571 0-48.897 21.754-49.84 48.294V-.296c36.629.455 50.496 19.531 50.496 19.531S-36.215 1.916 0 0" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(338.364 358.278)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0v30.048C0 61.56-25.459 88.574-57.03 89.886h-26.147c-6.641-9.473-17.346-15.037-28.952-15.037-11.5 0-22.24 5.564-28.882 15.037h-27.187c-31.471-1.521-56.755-28.351-56.755-59.824V0Z" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(401.253 170.561)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0c-57.138 0-57.138-57.893-57.138-57.893C-15.527-59.842 0-38.48 0-38.48s14.571-19.413 55.829-19.413c0 0 0 57.893-55.829 57.893" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(289.16 415.992)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0v-33.39" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(224.599 203.952)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path><path d="M0 0v-33.39" style="stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(353.487 203.952)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity="" data-original="currentColor" class=""></path></g></g></svg>
+              </div>
+            </div>
+            <div class="memory-year">2026</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section 3: Invite Text -->
+      <section class="invite-sec">
+        <div class="invite-box">
+          <p class="invite-text">
+            "Our Anniversary, a celebration of shared laughter, joy, and memories. Please join us as we mark this significant milestone in our journey."
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 4: Itinerary -->
+      <section class="itinerary-sec">
+        <!-- Curved sweeping background line -->
+        <svg class="itinerary-bg-line" viewBox="0 0 400 800" preserveAspectRatio="none">
+           <path d="M 200,0 C 200,100 350,150 350,250 C 350,380 50,420 50,550 C 50,680 350,700 200,800" stroke="rgba(212, 175, 55, 0.4)" stroke-width="2" fill="none" vector-effect="non-scaling-stroke"/>
+        </svg>
+
+        <div class="event-item">
+          <div class="event-time">
+            <h4 class="serif">5:30 PM</h4>
+            <p>Vow Renewal</p>
+          </div>
+          <div class="event-image">
+            <img src="images/Vow.webp" alt="Vow Renewal">
+          </div>
+        </div>
+
+        <div class="event-item">
+          <div class="event-time">
+            <h4 class="serif">6:30 PM</h4>
+            <p>Dinner & Toasts</p>
+          </div>
+          <div class="event-image">
+            <img src="images/Dining.webp" alt="Dinner & Toasts">
+          </div>
+        </div>
+
+        <div class="event-item">
+          <div class="event-time">
+            <h4 class="serif">8:00 PM</h4>
+            <p>Dancing</p>
+          </div>
+          <div class="event-image">
+            <img src="images/Dance.webp" alt="Dancing">
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Venue -->
+      <section class="venue-sec">
+        <img src="images/Venue.webp" alt="Venue Line Art" class="venue-img">
+        <h2 class="serif" style="color: var(--gold); font-size: 2.5rem; margin-bottom: 10px;">Venue</h2>
+        <div class="venue-address">
+          <strong style="color: var(--gold-light); font-size: 1.1rem;">The Grand Regency Ballroom</strong><br>
+          450 Golden Oaks Boulevard<br>
+          San Francisco, CA 94102
+        </div>
+      </section>
+
+      <!-- Section 6: Legacy & RSVP -->
+      <section class="glass-sec">
+        
+        <div class="glass-box">
+          <img src="images/Gift.webp" alt="line Illustration Soul" style="width: max(70%, 220px);">
+          <h3 class="serif">No Gifts, Just Presence.</h3>
+          <p>In lieu of gifts, contributions to <strong>[Charity Name]</strong> are welcome in the couple's honor.</p>
+        </div>
+
+        <div class="glass-box">
+          <h3 class="serif">RSVP Form</h3>
+          <div id="form-alert" class="alert alert-danger" style="display: none;" role="alert">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            <span>Please complete all required fields (* Name and Phone) before submitting.</span>
+          </div>
+          <form id="rsvpForm" onsubmit="event.preventDefault(); sendNewOneRSVP(); return false;" novalidate>
+            
+            <div class="form-group">
+              <label for="fn">Name(s)</label>
+              <input type="text" id="fn" class="form-control" placeholder="Full Name(s) *" required>
+              <div class="invalid-feedback" id="fn-feedback">Please enter your full name.</div>
+            </div>
+            
+            <div class="form-group">
+              <label for="pn">Phone</label>
+              <input type="tel" id="pn" class="form-control" placeholder="Phone Number *" required>
+              <div class="invalid-feedback" id="pn-feedback">Please enter a valid phone number.</div>
+            </div>
+
+            <div class="form-group">
+              <label>Will you join us?</label>
+              <div class="radio-group">
+                <label class="radio-btn">
+                  <input type="radio" name="attending" value="Joyfully Accept" checked onchange="toggleForm(true)">
+                  <span>Joyfully Accept</span>
+                </label>
+                <label class="radio-btn">
+                  <input type="radio" name="attending" value="Regretfully Decline" onchange="toggleForm(false)">
+                  <span>Regretfully Decline</span>
+                </label>
+              </div>
+            </div>
+
+            <div id="extra-fields">
+              <div class="form-group">
+                <label>Number of Guests</label>
+                <select id="partySize" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5+">5+</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Events Attending</label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="events" value="Vow Renewal" checked>
+                  <span>Vow Renewal (5:30 PM)</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="events" value="Dinner & Toasts" checked>
+                  <span>Dinner & Toasts (6:30 PM)</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="events" value="Dancing" checked>
+                  <span>Dancing (8:00 PM)</span>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label>Coming for...</label>
+                <div class="radio-group" style="flex-wrap: wrap;">
+                  <label class="radio-btn"><input type="radio" name="mood" value="Food"><span>Food</span></label>
+                  <label class="radio-btn"><input type="radio" name="mood" value="Dancing"><span>Dancing</span></label>
+                  <label class="radio-btn"><input type="radio" name="mood" value="Love"><span>Love</span></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Leave a Note</label>
+              <textarea id="note" class="form-control" placeholder="Wishes or memories..."></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label>Advice</label>
+              <textarea id="advice" class="form-control" placeholder="Words for forever..."></textarea>
+            </div>
+
+            <button type="button" class="btn-submit" onclick="sendNewOneRSVP()">Submit RSVP</button>
+          </form>
+        </div>
+
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <h2 class="script">Thank You</h2>
+        <p>We can't wait to celebrate with you!</p>
+        <p class="made-with-love" style="margin-top: 20px; font-size: 0.75rem; color: var(--text-muted);">Designed by <a href="https://invitebox.in/" target="_blank" rel="noreferrer" style="color: var(--gold); text-decoration: none; font-weight: bold;">Invite&nbsp;Box</a></p>
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
+    // Envelope & Scroll Logic
+    const curtainLayer = document.getElementById('curtain-layer');
+    const curtainVideo = document.getElementById('curtain-video');
+    const tapOverlay = document.getElementById('tap-overlay');
+    const scrollIndicator = document.getElementById('scroll-down-indicator');
+    let opened = false;
+
+    // Responsive Video Pre-Warmup & Blob Fetch
+    const MOBILE_SRC = "https://res.cloudinary.com/dticzwbrv/video/upload/v1786530126/Invelopegoldenblue_v8tslz.mp4";
+    const DESKTOP_SRC = "https://res.cloudinary.com/dticzwbrv/video/upload/v1788760007/Invelopegoldenblue_Desktop_ijcftk.mp4";
+    const MOBILE_POSTER = "images/invelopThumb.jpg";
+    const DESKTOP_POSTER = "images/Invelopegoldenblue_Desktop.webp";
+    
+    let isDesktop = window.innerWidth >= 1024;
+    let VIDEO_URL = isDesktop ? DESKTOP_SRC : MOBILE_SRC;
+    let videoBlobReady = false;
+
+    if (curtainVideo) {
+      curtainVideo.poster = isDesktop ? DESKTOP_POSTER : MOBILE_POSTER;
+      curtainVideo.src = VIDEO_URL;
+      curtainVideo.load();
+      
+      fetch(VIDEO_URL, { mode: 'cors' })
+        .then(res => {
+          if (!res.ok) throw new Error('Fetch failed');
+          return res.blob();
+        })
+        .then(blob => {
+          const blobUrl = URL.createObjectURL(blob);
+          if (curtainVideo && curtainVideo.paused && !videoBlobReady && (curtainVideo.currentTime || 0) === 0) {
+            videoBlobReady = true;
+            curtainVideo.src = blobUrl;
+            curtainVideo.load();
+          }
+        })
+        .catch(err => {
+          console.log("Background video blob pre-fetch fallback to direct stream:", err);
+        });
+    }
+
+    // Update video on resize before opened
+    let rszVid;
+    window.addEventListener('resize', () => {
+      clearTimeout(rszVid);
+      rszVid = setTimeout(() => {
+        if (opened || !curtainVideo) return;
+        let newIsDesktop = window.innerWidth >= 1024;
+        if (newIsDesktop !== isDesktop) {
+          isDesktop = newIsDesktop;
+          VIDEO_URL = isDesktop ? DESKTOP_SRC : MOBILE_SRC;
+          curtainVideo.poster = isDesktop ? DESKTOP_POSTER : MOBILE_POSTER;
+          curtainVideo.src = VIDEO_URL;
+          curtainVideo.load();
+        }
+      }, 150);
+    });
+
+    function openCurtain() {
+      if (opened) return;
+      opened = true;
+      tapOverlay.style.display = 'none';
+
+      // Pre-unlock BGM audio context on this user gesture so browser allows autoplay after video ends (from oldCode.html)
+      const bgm = document.getElementById('bg-music');
+      if (bgm) {
+        bgm.muted = true;
+        bgm.play().then(() => bgm.pause()).catch(() => {});
+        bgm.muted = false;
+        bgm.currentTime = 0;
+      }
+
+      curtainVideo.muted = false;
+      curtainVideo.volume = 1.0;
+      const playPromise = curtainVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(e => {
+          console.warn('Unmuted video play error (fallback retry):', e);
+          curtainVideo.play().catch(err => console.log('Final video play failure:', err));
+        });
+      }
+
+      curtainVideo.onended = () => {
+        tryAutoPlayMusic();
+        document.body.classList.add('unlocked');
+        curtainLayer.style.opacity = '0';
+        setTimeout(() => {
+          curtainLayer.style.display = 'none';
+          scrollIndicator.classList.add('visible');
+        }, 1000);
+      };
+
+      // Safety Fallback
+      setTimeout(() => {
+        if (!document.body.classList.contains('unlocked')) {
+            tryAutoPlayMusic();
+            document.body.classList.add('unlocked');
+            curtainLayer.style.opacity = '0';
+            setTimeout(() => {
+              curtainLayer.style.display = 'none';
+              scrollIndicator.classList.add('visible');
+            }, 1000);
+        }
+      }, 10000);
+    }
+
+    curtainLayer.addEventListener('click', openCurtain);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        scrollIndicator.classList.add('hidden');
+      } else if (opened) {
+        scrollIndicator.classList.remove('hidden');
+      }
+    });
+
+    // Scroll Reveal Observer for subsequent sections
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0,
+      rootMargin: '0px 0px -25% 0px'
+    });
+
+    document.querySelectorAll('.memory-item, .invite-box, .event-item, .venue-sec, .glass-box').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // Audio Controller
+    const audioBtn = document.getElementById('audio-ctrl');
+    const audioEl = document.getElementById('bg-music');
+    const iconMuted = document.getElementById('icon-muted');
+    const iconUnmuted = document.getElementById('icon-unmuted');
+    audioEl.volume = 0.3;
+
+    function tryAutoPlayMusic() {
+      audioEl.play().then(() => {
+        iconMuted.style.display = 'none';
+        iconUnmuted.style.display = 'block';
+      }).catch(() => {
+        iconMuted.style.display = 'block';
+        iconUnmuted.style.display = 'none';
+      });
+    }
+
+    audioBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (audioEl.paused) {
+        audioEl.play();
+        iconMuted.style.display = 'none';
+        iconUnmuted.style.display = 'block';
+      } else {
+        audioEl.pause();
+        iconUnmuted.style.display = 'none';
+        iconMuted.style.display = 'block';
+      }
+    });
+
+    // RSVP Form & Live Bootstrap Validation Logic
+    const fnInput = document.getElementById('fn');
+    const pnInput = document.getElementById('pn');
+    const formAlert = document.getElementById('form-alert');
+
+    if (fnInput) {
+      fnInput.addEventListener('input', () => {
+        if (fnInput.value.trim() !== '') {
+          fnInput.classList.remove('is-invalid');
+          fnInput.classList.add('is-valid');
+        } else {
+          fnInput.classList.remove('is-valid');
+        }
+        checkHideGlobalAlert();
+      });
+    }
+
+    if (pnInput) {
+      pnInput.addEventListener('input', () => {
+        if (pnInput.value.trim() !== '') {
+          pnInput.classList.remove('is-invalid');
+          pnInput.classList.add('is-valid');
+        } else {
+          pnInput.classList.remove('is-valid');
+        }
+        checkHideGlobalAlert();
+      });
+    }
+
+    function checkHideGlobalAlert() {
+      if (fnInput && fnInput.value.trim() !== '' && pnInput && pnInput.value.trim() !== '') {
+        if (formAlert) formAlert.style.display = 'none';
+      }
+    }
+
+    function toggleForm(show) {
+      document.getElementById('extra-fields').style.display = show ? 'block' : 'none';
+    }
+
+    function sendNewOneRSVP() {
+      const fn = fnInput ? fnInput.value.trim() : '';
+      const pn = pnInput ? pnInput.value.trim() : '';
+      let isValid = true;
+
+      // Validate Name
+      if (!fn) {
+        if (fnInput) {
+          fnInput.classList.add('is-invalid');
+          fnInput.classList.remove('is-valid');
+        }
+        isValid = false;
+      } else {
+        if (fnInput) {
+          fnInput.classList.remove('is-invalid');
+          fnInput.classList.add('is-valid');
+        }
+      }
+
+      // Validate Phone
+      if (!pn) {
+        if (pnInput) {
+          pnInput.classList.add('is-invalid');
+          pnInput.classList.remove('is-valid');
+        }
+        isValid = false;
+      } else {
+        if (pnInput) {
+          pnInput.classList.remove('is-invalid');
+          pnInput.classList.add('is-valid');
+        }
+      }
+
+      if (!isValid) {
+        if (formAlert) {
+          formAlert.style.display = 'flex';
+          formAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        if (!fn && fnInput) fnInput.focus();
+        else if (!pn && pnInput) pnInput.focus();
+        return;
+      }
+
+      if (formAlert) formAlert.style.display = 'none';
+      
+      const attending = document.querySelector('input[name="attending"]:checked').value;
+      const partySize = document.getElementById('partySize').value;
+      
+      const eventsNodes = document.querySelectorAll('input[name="events"]:checked');
+      const events = Array.from(eventsNodes).map(el => el.value).join(', ') || 'None';
+      
+      const mood = document.querySelector('input[name="mood"]:checked')?.value || 'Not sure';
+      
+      const note = document.getElementById('note').value.trim();
+      const advice = document.getElementById('advice').value.trim();
+      
+      const isAccepting = attending.toLowerCase().includes('accept');
+      const attendBadge = isAccepting ? `✅ *Joyfully Accept* 🥂` : `🕊️ *Regretfully Decline*`;
+
+      let txt = `✨ *50th Golden Anniversary — RSVP* ✨\n`;
+      txt += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      txt += `👤 *Guest:* ${fn}\n`;
+      txt += `📞 *Phone:* ${pn}\n`;
+      txt += `💌 *Response:* ${attendBadge}\n`;
+      
+      if (isAccepting) {
+        txt += `👥 *Total Guests:* ${partySize}\n`;
+        if (events && events !== 'None') {
+          txt += `🗓️ *Events Attending:* ${events}\n`;
+        }
+        if (mood && mood !== 'Not sure') {
+          txt += `🎉 *Coming For:* ${mood}\n`;
+        }
+      }
+      
+      if (note) {
+        txt += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+        txt += `💬 *Personal Note:*\n_${note}_\n`;
+      }
+      if (advice) {
+        if (!note) txt += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+        txt += `📜 *Words of Wisdom:*\n_${advice}_\n`;
+      }
+      
+      txt += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+      txt += `_Sent via Digital Invitation_`;
+      
+      const ph = '918200482291';
+      const base = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? 'https://api.whatsapp.com/send' : 'https://web.whatsapp.com/send';
+      
+      window.open(base + '?phone=' + ph + '&text=' + encodeURIComponent(txt), '_blank');
+      
+      document.getElementById('rsvpForm').reset();
+      if (fnInput) fnInput.classList.remove('is-valid', 'is-invalid');
+      if (pnInput) pnInput.classList.remove('is-valid', 'is-invalid');
+      toggleForm(true);
+    }
+
+    // Initialize Fancybox Gallery
+    if (typeof Fancybox !== 'undefined') {
+      Fancybox.bind('[data-fancybox="gallery"]', {
+        Hash: false
+      });
+    }
+
+    /* ══════════════════════════════════
+       PARTICLE ANIMATION (PETALS)
+    ══════════════════════════════════ */
+    const canvas = document.getElementById('particles-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      const appEl = document.getElementById('app');
+      canvas.width = appEl ? appEl.offsetWidth : window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particlesArray = [];
+      const numberOfParticles = 35;
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 4 + 2;
+          this.speedY = Math.random() * 1.5 + 0.5;
+          this.speedX = (Math.random() - 0.5) * 1;
+          this.angle = Math.random() * 360;
+          this.spin = (Math.random() - 0.5) * 4;
+          this.color = Math.random() > 0.5 ? 'rgba(212, 175, 55, 0.45)' : 'rgba(235, 195, 125, 0.4)';
+        }
+        update() {
+          this.y += this.speedY;
+          this.x += this.speedX;
+          this.angle += this.spin;
+          if (this.y > canvas.height) {
+            this.y = -10;
+            this.x = Math.random() * canvas.width;
+          }
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.angle * Math.PI / 180);
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function initParticles() {
+        for (let i = 0; i < numberOfParticles; i++) {
+          particlesArray.push(new Particle());
+        }
+      }
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+          particlesArray[i].update();
+          particlesArray[i].draw();
+        }
+        requestAnimationFrame(animateParticles);
+      }
+      initParticles();
+      animateParticles();
+
+      window.addEventListener('resize', () => {
+        if (appEl) canvas.width = appEl.offsetWidth;
+        canvas.height = window.innerHeight;
+      });
+    }
+
+
+  </script>
+</body>
+</html>
