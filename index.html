@@ -21,10 +21,19 @@
   <meta name="twitter:description" content="Join us in celebrating 50 years of love, laughter, and cherished memories at Robert & Margaret's 50th Golden Anniversary on October 24, 2026.">
   <meta name="twitter:image" content="images/og_image.png">
 
+  <!-- Google Fonts & Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
-  <link rel="preload" href="https://res.cloudinary.com/dticzwbrv/video/upload/v1786530126/Invelopegoldenblue_v8tslz.mp4" as="video" type="video/mp4" fetchpriority="high">
-  <link rel="preload" href="images/invelopThumb.webp" as="image" fetchpriority="high">
+
+  <!-- Responsive Intro Video Thumbnails & Posters -->
+  <link rel="preload" href="images/invelopThumb.jpg" as="image" fetchpriority="high" media="(max-width: 1023px)">
+  <link rel="preload" href="images/Invelopegoldenblue_Desktop.webp" as="image" fetchpriority="high" media="(min-width: 1024px)">
+
+  <!-- First Banner Section Assets (Critical for LCP & FCP) -->
   <link rel="preload" href="images/hero_couple_portrait_1786449715336.png" as="image" fetchpriority="high">
+  <link rel="preload" href="images/Ribbon.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="images/DateBanner.webp" as="image" fetchpriority="high">
 
   <!-- Fancybox 5 CSS & JS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
@@ -40,7 +49,7 @@
       --text: #ffffff;
       --text-muted: rgba(255, 255, 255, 0.7);
       --max-w: 480px;
-    }
+    }   
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -836,31 +845,254 @@
 
     /* Footer */
     .footer {
-      background: var(--navy); padding: 40px 20px; text-align: center;
-      border-top: 1px solid rgba(212, 175, 55, 0.3); margin-top: 20px;
+      background: var(--navy);
+      padding: 40px 20px calc(40px + env(safe-area-inset-bottom, 0px));
+      padding-left: max(20px, env(safe-area-inset-left, 0px));
+      padding-right: max(20px, env(safe-area-inset-right, 0px));
+      text-align: center;
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      margin-top: 20px;
     }
     .footer h2 { color: var(--gold); font-size: 2.5rem; margin-bottom: 10px; }
     .footer p { color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; }
 
+    /* Minimal Global Luxury Loader */
+    #global-loader {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background: var(--navy);
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s;
+    }
+    #global-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-ring {
+      width: 44px;
+      height: 44px;
+      border: 2px solid rgba(231, 191, 133, 0.2);
+      border-top: 2px solid var(--gold);
+      border-radius: 50%;
+      animation: loaderSpin 0.9s linear infinite;
+      box-shadow: 0 0 16px rgba(231, 191, 133, 0.25);
+    }
+    .loader-text {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      animation: loaderPulse 1.4s ease-in-out infinite alternate;
+    }
+    @keyframes loaderSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes loaderPulse {
+      0% { opacity: 0.4; }
+      100% { opacity: 0.95; }
+    }
+
+    /* --- DESKTOP RESPONSIVE (LUXURY THEME) --- */
+    @media (min-width: 1024px) {
+      #app { max-width: 100%; }
+      #curtain-layer, #particles-canvas { max-width: none !important; }
+      #landscape-warning { display: none !important; }
+      #app { display: flex !important; }
+
+      /* Hero Section */
+      .hero-sec {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 50px;
+        padding: 80px 40px 40px;
+        max-width: 1300px;
+        margin: 0 auto;
+        align-items: center;
+        row-gap: 0;
+      }
+      .hero-couple-title { 
+        grid-column: 1 / 2;
+        grid-row: 1;
+        font-size: clamp(3rem, 5vw, 5rem); 
+        margin-bottom: 20px; 
+      }
+      .hero-archway { 
+        grid-column: 1 / 2;
+        grid-row: 2;
+        max-width: 450px; 
+        margin: 0 auto; 
+        width: 100%; 
+      }
+      .hero-img-wrap { height: 420px; }
+      .ribbon { 
+        grid-column: 1 / 2;
+        grid-row: 3;
+        margin-top: -86px; 
+        margin-left: auto; 
+        margin-right: auto;
+        max-width: 500px;
+        padding-right: 0; 
+      }
+      .ribbon img { max-width: 100%; }
+      .hero-details { 
+        grid-column: 2 / 3;
+        grid-row: 1 / 4;
+        align-self: center;
+        justify-self: center; 
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0; 
+        transform: none; 
+        opacity: 1; 
+        margin-top: 0; 
+      }
+      .date-banner-wrap { 
+        width: 100%;
+        max-width: 600px; 
+      }
+      .scroll-down-indicator {
+        grid-column: 1 / -1;
+        justify-self: center;
+        margin-top: 50px;
+      }
+
+      /* Memories Grid */
+      .timeline-sec { padding: 100px 50px; }
+      .timeline-title { font-size: clamp(3rem, 5vw, 5rem); margin-bottom: 80px; }
+      .memories-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 80px 60px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .memory-item { width: 100%; max-width: 400px; justify-self: center; }
+      .memory-item:nth-child(odd) { transform: rotate(-3deg); }
+      .memory-item:nth-child(even) { transform: rotate(3deg); }
+      .memory-item:nth-child(odd).revealed { transform: rotate(-3deg); }
+      .memory-item:nth-child(even).revealed { transform: rotate(3deg); }
+      .polaroid-frame a, .polaroid-frame img { height: 380px; }
+      .memory-year { font-size: 3rem; bottom: -50px; }
+      
+      /* Invite Section */
+      .invite-sec { padding: 80px 50px 40px; }
+      .invite-box { max-width: 800px; margin: 0 auto; padding: 50px; }
+      .invite-text { font-size: 1.8rem; line-height: 2; }
+      .invite-box::before { font-size: 2rem; top: -20px; }
+      .invite-box::after { font-size: 2rem; bottom: -20px; }
+
+      /* Itinerary */
+      .itinerary-sec {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        padding: 40px 50px 100px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .itinerary-bg-line { display: none; }
+      .itinerary-sec .event-item, .itinerary-sec .event-item:nth-child(even) {
+        flex-direction: column;
+        flex: 1;
+        margin-bottom: 0;
+      }
+      .event-time { padding: 30px 10px; }
+      .event-time::before { width: 260px; height: 180px; filter: blur(10px); }
+      .event-time h4 { font-size: 3.5rem; }
+      .event-time p { font-size: 1.6rem; }
+      .event-image { margin-top: 30px; }
+      .event-image::before { width: 240px; height: 240px; filter: blur(12px); }
+      .event-image img { max-height: 240px; }
+
+      /* Venue and Glass Sec Layout */
+      #main-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      #particles-canvas, .hero-sec, .timeline-sec, .invite-sec, .itinerary-sec, .footer {
+        grid-column: 1 / -1;
+      }
+      .venue-sec {
+        grid-column: 1 / 2;
+        padding: 60px 40px;
+        align-self: center;
+      }
+      .venue-img { max-width: 350px; margin-bottom: 40px; }
+      .venue-sec h2 { font-size: 3rem; margin-bottom: 15px; }
+      .venue-address { font-size: 1.2rem; }
+      .venue-address strong { font-size: 1.4rem; margin-bottom: 10px; }
+
+      .glass-sec {
+        display: contents; /* Allows children to participate in #main-content grid */
+      }
+      .glass-box:first-child {
+        grid-column: 2 / 3;
+        align-self: center;
+        margin: 60px 40px;
+        padding: 50px;
+      }
+      .glass-box:last-child {
+        grid-column: 1 / -1;
+        margin: 0 80px 80px;
+        max-width: 900px;
+        justify-self: center;
+        width: calc(100% - 160px);
+        padding: 50px;
+      }
+      .glass-box h3 { font-size: 2.5rem; }
+      .glass-box p, .form-group label { font-size: 1.2rem; }
+      .form-control { padding: 15px 20px; font-size: 1.1rem; }
+      .btn-submit { padding: 18px; font-size: 1.2rem; }
+      .radio-group { gap: 20px; }
+      .radio-btn span { font-size: 1rem; padding: 12px; }
+
+      /* Audio Controller */
+      .audio-ctrl {
+        right: 40px;
+        bottom: 40px;
+      }
+
+      /* Footer Desktop Padding */
+      .footer {
+        padding: 60px 40px calc(60px + env(safe-area-inset-bottom, 0px));
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Minimal Global Loader -->
+  <!-- Minimal Global Luxury Loader -->
   <div id="global-loader">
     <div class="loader-ring"></div>
+    <div class="loader-text">Loading Invitation</div>
   </div>
   <script>
-function setActualVh() {
-    const h = window.visualViewport?.height ?? window.innerHeight;
-    document.documentElement.style.setProperty('--actual-vh', `${h * 0.01}px`);
-}
-setActualVh();
-(window.visualViewport ?? window).addEventListener('resize', setActualVh);
+    function setActualVh() {
+      const h = window.visualViewport?.height ?? window.innerHeight;
+      document.documentElement.style.setProperty('--actual-vh', `${h * 0.01}px`);
+    }
+    setActualVh();
+    (window.visualViewport ?? window).addEventListener('resize', setActualVh);
 
     (function() {
       const loader = document.getElementById('global-loader');
-      const video = document.getElementById('curtain-video');
       let isHidden = false;
 
       function hideLoader() {
@@ -868,23 +1100,63 @@ setActualVh();
         isHidden = true;
         if (loader) {
           loader.classList.add('hidden');
-          setTimeout(() => { loader.style.display = 'none'; }, 450);
+          setTimeout(() => { loader.style.display = 'none'; }, 500);
         }
       }
 
-      if (video && video.readyState >= 2) {
-        hideLoader();
-      } else if (video) {
-        video.addEventListener('canplay', hideLoader, { once: true });
-        video.addEventListener('canplaythrough', hideLoader, { once: true });
-        video.addEventListener('loadeddata', hideLoader, { once: true });
-        video.addEventListener('error', hideLoader, { once: true });
-      } else {
-        hideLoader();
+      // Hard max timeout: exactly 3 seconds
+      const maxTimer = setTimeout(hideLoader, 3000);
+
+      // Critical assets for FCP / LCP & Hero experience
+      const isDesktop = window.innerWidth >= 1024;
+      const criticalImages = [
+        isDesktop ? 'images/Invelopegoldenblue_Desktop.webp' : 'images/invelopThumb.jpg',
+        'images/hero_couple_portrait_1786449715336.png',
+        'images/Ribbon.webp',
+        'images/DateBanner.webp'
+      ];
+
+      let pending = criticalImages.length + 1; // images + intro video
+
+      function onItemDone() {
+        pending--;
+        if (pending <= 0) {
+          clearTimeout(maxTimer);
+          hideLoader();
+        }
       }
 
-      // Max loader duration limit: 3 seconds
-      setTimeout(hideLoader, 3000);
+      // 1. Check Curtain Video Readiness
+      const video = document.getElementById('curtain-video');
+      if (!video || video.readyState >= 2) {
+        onItemDone();
+      } else {
+        const onVideoReady = () => {
+          video.removeEventListener('canplay', onVideoReady);
+          video.removeEventListener('loadeddata', onVideoReady);
+          video.removeEventListener('error', onVideoReady);
+          onItemDone();
+        };
+        video.addEventListener('canplay', onVideoReady, { once: true });
+        video.addEventListener('loadeddata', onVideoReady, { once: true });
+        video.addEventListener('error', onVideoReady, { once: true });
+      }
+
+      // 2. Check Critical Banner Images
+      criticalImages.forEach(src => {
+        const img = new Image();
+        let finished = false;
+        function markDone() {
+          if (!finished) {
+            finished = true;
+            onItemDone();
+          }
+        }
+        img.onload = markDone;
+        img.onerror = markDone;
+        img.src = src;
+        if (img.complete) markDone();
+      });
     })();
   </script>
 
@@ -1213,12 +1485,21 @@ setActualVh();
     const scrollIndicator = document.getElementById('scroll-down-indicator');
     let opened = false;
 
-    // Video Pre-Warmup & Blob Fetch (from oldCode.html pattern for 0ms mobile playback)
-    const VIDEO_URL = "https://res.cloudinary.com/dticzwbrv/video/upload/v1786530126/Invelopegoldenblue_v8tslz.mp4";
+    // Responsive Video Pre-Warmup & Blob Fetch
+    const MOBILE_SRC = "https://res.cloudinary.com/dticzwbrv/video/upload/v1786530126/Invelopegoldenblue_v8tslz.mp4";
+    const DESKTOP_SRC = "https://res.cloudinary.com/dticzwbrv/video/upload/v1788760007/Invelopegoldenblue_Desktop_ijcftk.mp4";
+    const MOBILE_POSTER = "images/invelopThumb.jpg";
+    const DESKTOP_POSTER = "images/Invelopegoldenblue_Desktop.webp";
+    
+    let isDesktop = window.innerWidth >= 1024;
+    let VIDEO_URL = isDesktop ? DESKTOP_SRC : MOBILE_SRC;
     let videoBlobReady = false;
 
     if (curtainVideo) {
+      curtainVideo.poster = isDesktop ? DESKTOP_POSTER : MOBILE_POSTER;
+      curtainVideo.src = VIDEO_URL;
       curtainVideo.load();
+      
       fetch(VIDEO_URL, { mode: 'cors' })
         .then(res => {
           if (!res.ok) throw new Error('Fetch failed');
@@ -1236,6 +1517,23 @@ setActualVh();
           console.log("Background video blob pre-fetch fallback to direct stream:", err);
         });
     }
+
+    // Update video on resize before opened
+    let rszVid;
+    window.addEventListener('resize', () => {
+      clearTimeout(rszVid);
+      rszVid = setTimeout(() => {
+        if (opened || !curtainVideo) return;
+        let newIsDesktop = window.innerWidth >= 1024;
+        if (newIsDesktop !== isDesktop) {
+          isDesktop = newIsDesktop;
+          VIDEO_URL = isDesktop ? DESKTOP_SRC : MOBILE_SRC;
+          curtainVideo.poster = isDesktop ? DESKTOP_POSTER : MOBILE_POSTER;
+          curtainVideo.src = VIDEO_URL;
+          curtainVideo.load();
+        }
+      }, 150);
+    });
 
     function openCurtain() {
       if (opened) return;
@@ -1437,19 +1735,36 @@ setActualVh();
       const note = document.getElementById('note').value.trim();
       const advice = document.getElementById('advice').value.trim();
       
-      let txt = `*RSVP — 50th Golden Anniversary*\n\n`;
-      txt += `*Name:* ${fn}\n`;
-      txt += `*Phone:* ${pn}\n`;
-      txt += `*Attending:* ${attending}\n`;
+      const isAccepting = attending.toLowerCase().includes('accept');
+      const attendBadge = isAccepting ? `✅ *Joyfully Accept* 🥂` : `🕊️ *Regretfully Decline*`;
+
+      let txt = `✨ *50th Golden Anniversary — RSVP* ✨\n`;
+      txt += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      txt += `👤 *Guest:* ${fn}\n`;
+      txt += `📞 *Phone:* ${pn}\n`;
+      txt += `💌 *Response:* ${attendBadge}\n`;
       
-      if(attending === 'Joyfully Accept') {
-        txt += `*Party Size:* ${partySize}\n`;
-        txt += `*Events:* ${events}\n`;
-        txt += `*Coming for:* ${mood}\n`;
+      if (isAccepting) {
+        txt += `👥 *Total Guests:* ${partySize}\n`;
+        if (events && events !== 'None') {
+          txt += `🗓️ *Events Attending:* ${events}\n`;
+        }
+        if (mood && mood !== 'Not sure') {
+          txt += `🎉 *Coming For:* ${mood}\n`;
+        }
       }
       
-      if(note) txt += `\n*Note:* ${note}\n`;
-      if(advice) txt += `*Advice:* ${advice}\n`;
+      if (note) {
+        txt += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+        txt += `💬 *Personal Note:*\n_${note}_\n`;
+      }
+      if (advice) {
+        if (!note) txt += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+        txt += `📜 *Words of Wisdom:*\n_${advice}_\n`;
+      }
+      
+      txt += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+      txt += `_Sent via Digital Invitation_`;
       
       const ph = '918200482291';
       const base = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? 'https://api.whatsapp.com/send' : 'https://web.whatsapp.com/send';
@@ -1535,6 +1850,8 @@ setActualVh();
         canvas.height = window.innerHeight;
       });
     }
+
+
   </script>
 </body>
 </html>
