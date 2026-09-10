@@ -40,6 +40,56 @@
       content="Five years of love & togetherness. Join us in celebrating our 5th Wedding Anniversary on October 24, 2026."
     />
     <meta name="twitter:image" content="images/og-image.jpg" />
+
+    <!-- Resource Hints & CDN Preconnections -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+    <!-- High Priority Preloads for First Section Assets -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://images.unsplash.com/photo-1707239986825-83a1fe8e4fa0?q=80&amp;w=687&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="images/Leaves6.webp"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="images/Leaves4.webp"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="images/Leaves3.webp"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="images/Leaves1.webp"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="images/Leaves2.webp"
+      fetchpriority="high"
+    />
+
     <style>
       :root {
         --paper: #fbf8f1;
@@ -1770,6 +1820,9 @@
       class="desktop-leaf"
       src="images/Leaves1.webp"
       alt=""
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
       style="
         position: fixed;
         top: 0;
@@ -1784,6 +1837,9 @@
       class="desktop-leaf"
       src="images/Leaves2.webp"
       alt=""
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
       style="
         position: fixed;
         bottom: 0;
@@ -1826,6 +1882,9 @@
             class="desktop-leaf"
             src="images/Leaves6.webp"
             alt=""
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
             style="
               position: absolute;
               left: -40px;
@@ -1855,6 +1914,9 @@
                 class="hero-corner-leaves"
                 src="images/Leaves4.webp"
                 alt="Leaves"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
                 style="
                   position: absolute;
                   left: -80px;
@@ -1868,6 +1930,9 @@
                 class="hero-botanical"
                 src="images/Leaves3.webp"
                 alt="Leaves"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
                 style="
                   position: absolute;
                   right: -60px;
@@ -1879,8 +1944,11 @@
               />
               <div class="photo-arch">
                 <img
-                  src="images/Annivarsary.avif"
+                  src="https://images.unsplash.com/photo-1707239986825-83a1fe8e4fa0?q=80&amp;w=687&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="A couple celebrating their anniversary"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -1968,9 +2036,8 @@
                     src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&amp;fit=crop&amp;w=1100&amp;q=85"
                     alt="Couple embracing on their wedding day"
                     loading="lazy"
-                    onerror="
-                      this.src = 'images/Annivarsary.avif'
-                    "
+                    decoding="async"
+                    fetchpriority="low"
                   />
                   <div class="memory-caption">
                     <h3>New Beginnings</h3>
@@ -1986,9 +2053,8 @@
                     src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&amp;fit=crop&amp;w=1100&amp;q=85"
                     alt="Couple enjoying outdoor scenic adventure together"
                     loading="lazy"
-                    onerror="
-                      this.src = 'images/Annivarsary.avif'
-                    "
+                    decoding="async"
+                    fetchpriority="low"
                   />
                   <div class="memory-caption">
                     <h3>Adventures Together</h3>
@@ -2005,9 +2071,8 @@
                     src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&amp;fit=crop&amp;w=1100&amp;q=85"
                     alt="Couple laughing and sharing a warm cozy moment"
                     loading="lazy"
-                    onerror="
-                      this.src = 'images/Annivarsary.avif'
-                    "
+                    decoding="async"
+                    fetchpriority="low"
                   />
                   <div class="memory-caption">
                     <h3>Growing Stronger</h3>
@@ -2024,9 +2089,8 @@
                     src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&amp;fit=crop&amp;w=1100&amp;q=85"
                     alt="Couple embracing during a golden sunset celebration"
                     loading="lazy"
-                    onerror="
-                      this.src = 'images/Annivarsary.avif'
-                    "
+                    decoding="async"
+                    fetchpriority="low"
                   />
                   <div class="memory-caption">
                     <h3>Forever &amp; Always</h3>
@@ -2044,6 +2108,9 @@
             class="desktop-leaf"
             src="images/Leaves1.webp"
             alt=""
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
             style="
               position: absolute;
               right: -60px;
@@ -2065,6 +2132,9 @@
                   <img
                     src="images/Schedule_Icon1.webp"
                     alt="Arch"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
                     style="
                       width: 100%;
                       height: 100%;
@@ -2085,6 +2155,9 @@
                   <img
                     src="images/Schedule_Icon2.webp"
                     alt="Arch"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
                     style="
                       width: 100%;
                       height: 100%;
@@ -2105,6 +2178,9 @@
                   <img
                     src="images/Schedule_Icon3.webp"
                     alt="Dinner"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
                     style="
                       width: 100%;
                       height: 100%;
@@ -2125,6 +2201,9 @@
                   <img
                     src="images/Schedule_Icon.webp"
                     alt="Dancing"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
                     style="
                       width: 100%;
                       height: 100%;
@@ -2147,6 +2226,9 @@
             <img
               src="images/Venue.avif"
               alt="The Olive Grove Estate"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
               style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9"
             />
           </div>
@@ -2183,6 +2265,9 @@
             <img
               src="images/Leaves5.webp"
               alt="Flowers"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
               style="
                 position: absolute;
                 right: -40px;
@@ -2197,6 +2282,8 @@
               src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&amp;fit=crop&amp;w=850&amp;q=85"
               alt="Couple walking together by the water"
               loading="lazy"
+              decoding="async"
+              fetchpriority="low"
               onerror="
                 this.src = 'images/hero_couple_portrait_1786449715336.png'
               "
@@ -2209,6 +2296,9 @@
             class="desktop-leaf"
             src="images/Leaves2.webp"
             alt=""
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
             style="
               position: absolute;
               left: -50px;
@@ -2314,6 +2404,9 @@
           class="footerImage"
           src="images/Footer_illustartion.webp"
           alt="Mason Jar"
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
         />
       </footer>
     </div>
@@ -2347,7 +2440,7 @@
         <path d="m17 10 4 4m0-4-4 4" />
       </svg>
     </button>
-    <audio id="bg-music" loop preload="auto" playsinline webkit-playsinline>
+    <audio id="bg-music" loop preload="none" playsinline webkit-playsinline>
       <source src="images/folk-acoustic-summer-walk-152722.mp3" type="audio/mpeg" />
     </audio>
     <script src="https://cdn.jsdelivr.net/npm/embla-carousel@8.5.2/embla-carousel.umd.js"></script>
@@ -2370,6 +2463,22 @@ setActualVh();
           musicToggle = document.getElementById("music-toggle"),
           invitationOpened = false;
         music.volume = 0.8;
+
+        // Optimize initial load: defer audio buffering until after first paint or on user interaction
+        window.addEventListener("load", function () {
+          if (music && music.paused) {
+            music.preload = "auto";
+          }
+        });
+        if (entry) {
+          entry.addEventListener(
+            "pointerover",
+            function () {
+              if (music && music.preload !== "auto") music.preload = "auto";
+            },
+            { once: true },
+          );
+        }
         function setMusicState(isPlaying) {
           musicToggle.classList.toggle("is-muted", !isPlaying);
           musicToggle.setAttribute(
