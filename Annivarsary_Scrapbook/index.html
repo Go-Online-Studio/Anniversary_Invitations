@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Celebrating Our Love — 6th Anniversary Invitation</title>
+  <meta name="description" content="Join us in celebrating 6 years of love, laughter, and beautiful memories. You are cordially invited to our 6th Anniversary Celebration.">
+  <meta name="theme-color" content="#80182a">
+
+  <!-- Preconnect & DNS-Prefetch to High-Priority Origins -->
+  <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+  <link rel="dns-prefetch" href="https://res.cloudinary.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- High-Priority Preloads: Intro & First Section Critical Assets -->
+  <link rel="preload" href="images/vlcsnap-2026-11-03-10h18m28s743.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="images/Sec1.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="https://res.cloudinary.com/dticzwbrv/video/upload/v1793681189/Clean_Memory_Book_Opening_With_Light_B816d5f3_fppyv3.mp4" as="video" type="video/mp4" fetchpriority="high">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400;1,700&display=swap" as="style">
+
+  <!-- Google Fonts: Script, Serif & Modern Sans with font-display swap -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400;1,700&display=swap">
+
+  <!-- Core External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Non-blocking Fancybox 5 Lightbox Gallery (Section 3 polaroid popups) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"></noscript>
+</head>
+<body>
+
+  <!-- =========================================================
+       0. MINIMAL PRELOADER (Intro & First Section Assets, Max 3s)
+       ========================================================= -->
+  <div id="minimal-loader" role="status" aria-live="polite" aria-label="Loading celebration...">
+    <div class="minimal-loader-inner">
+      <div class="loader-monogram">S &amp; R</div>
+      <div class="loader-spinner" aria-hidden="true"></div>
+      <p class="loader-label">Celebrating Our Love</p>
+      <div class="loader-progress-track">
+        <div class="loader-progress-bar" id="loader-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       1. LANDSCAPE WARNING OVERLAY
+       Displays only when device is in landscape with max-height: 500px
+       ========================================================= -->
+  <aside id="landscape-warning" role="alert" aria-live="assertive">
+    <svg class="lw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+      <line x1="12" y1="18" x2="12.01" y2="18"></line>
+    </svg>
+    <h2 class="lw-title">Please Rotate Your Device</h2>
+    <p class="lw-text">This anniversary invitation is handcrafted for a portrait mobile viewing experience. Please rotate your device to vertical orientation.</p>
+  </aside>
+
+  <!-- =========================================================
+       2. SINGLE GLOBAL FALLING PETALS CANVAS
+       Fixed overlay across the entire invitation
+       ========================================================= -->
+  <canvas id="global-petals" aria-hidden="true"></canvas>
+
+  <!-- =========================================================
+       3. INTRO LAYER (Full-screen Video & Tap Screen)
+       ========================================================= -->
+  <div id="intro-layer" aria-label="Intro Video Invitation">
+    <video id="intro-video" playsinline webkit-playsinline preload="auto">
+      <source src="https://res.cloudinary.com/dticzwbrv/video/upload/v1793681189/Clean_Memory_Book_Opening_With_Light_B816d5f3_fppyv3.mp4" type="video/mp4">
+    </video>
+
+    <div class="intro-tap-screen" id="tap-screen" role="button" tabindex="0" aria-label="Tap to open invitation">
+      <p class="intro-subtitle">A CELEBRATION OF LOVE</p>
+      <h1 class="intro-title">6th Anniversary</h1>
+      <p class="intro-names">Smit &amp; Riya</p>
+      <button class="btn-tap-begin" id="btn-tap-begin" type="button">
+        <span>Tap to Open Invitation</span>
+      </button>
+      <p class="intro-footnote">Please turn on your sound for the best experience</p>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       4. MAIN APP CONTAINER
+       Constrained mobile container with container-type: inline-size
+       ========================================================= -->
+  <main id="app">
+
+    <!-- -------------------------------------------------------
+         SECTION 1: HERO COVER
+         ------------------------------------------------------- -->
+    <section id="sec-hero" class="anniv-section" aria-label="Anniversary Hero Cover">
+      <img src="images/Sec1.webp" alt="Anniversary Cover Background" class="sec-bg" loading="eager" fetchpriority="high" decoding="async">
+
+      <div class="hero-content">
+        <p class="hero-header reveal">Celebrating Our Love</p>
+
+        <div class="hero-num-wrap reveal">
+          <span class="hero-num">6</span><span class="hero-th">th</span>
+        </div>
+
+        <h2 class="hero-anniversary reveal">ANNIVERSARY</h2>
+
+        <p class="hero-couple-names reveal">Smit &amp; Riya</p>
+
+        <p class="hero-datetime reveal">
+          <span class="hero-date">24 OCT 2026</span>
+          <span class="hero-bullet">•</span>
+          <span class="hero-time">6:00 PM</span>
+        </p>
+
+        <!-- Scroll Down Indicator -->
+        <div id="scroll-indicator" class="scroll-indicator" role="button" tabindex="0" onclick="scrollToSection('#sec-quote')" aria-label="Scroll down to explore">
+          <span>Scroll to Explore</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         SECTION 2: QUOTE
+         ------------------------------------------------------- -->
+    <section id="sec-quote" class="anniv-section" aria-label="Anniversary Love Quote">
+      <img src="images/Sec2.webp" alt="Vintage Letter Background" class="sec-bg" loading="lazy" decoding="async">
+
+      <div class="quote-content">
+        <p class="quote-line reveal">Two hearts,</p>
+        <p class="quote-line reveal">one beautiful journey,</p>
+        <p class="quote-line reveal">and a lifetime of love.</p>
+
+        <p class="quote-line reveal mt-6">Here's to more laughter,</p>
+        <p class="quote-line reveal">more memories,</p>
+        <p class="quote-line reveal">and forever together.</p>
+
+        <p class="quote-signature reveal">— Smit &amp; Riya <span class="sig-heart">♡</span></p>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         SECTION 3: GALLERY (CRITICAL LAYOUT)
+         Layer 1: User photos behind (z-index 1)
+         Layer 2: Sec3.webp with transparent frames (z-index 2)
+         Layer 3: Text & decorative typography (z-index 3)
+         ------------------------------------------------------- -->
+    <section id="sec-gallery" class="anniv-section" aria-label="Our Beautiful Memories Gallery">
+      <!-- Layer 1: User Photos BEHIND Section Background (z-index 1) -->
+      <div class="gallery-photos-layer">
+        <a href="images/photo1.webp" class="polaroid-item polaroid-1" data-fancybox="gallery" data-caption="Our Beautiful Memories — Two Rings, One Lifetime 💕" aria-label="Open photo 1 in full view">
+          <img src="images/photo1.webp" alt="Memory Photo 1 - Wedding Rings" class="polaroid-photo" loading="lazy" decoding="async">
+        </a>
+        <a href="images/photo2.webp" class="polaroid-item polaroid-2" data-fancybox="gallery" data-caption="Our Beautiful Memories — Where Forever Began 🌸" aria-label="Open photo 2 in full view">
+          <img src="images/photo2.webp" alt="Memory Photo 2 - Garden Chairs" class="polaroid-photo" loading="lazy" decoding="async">
+        </a>
+        <a href="images/photo3.webp" class="polaroid-item polaroid-3" data-fancybox="gallery" data-caption="Our Beautiful Memories — Showered with Love & Blessings ✨" aria-label="Open photo 3 in full view">
+          <img src="images/photo3.webp" alt="Memory Photo 3 - Celebration Kiss" class="polaroid-photo" loading="lazy" decoding="async">
+        </a>
+        <a href="images/photo4.webp" class="polaroid-item polaroid-4" data-fancybox="gallery" data-caption="Our Beautiful Memories — Endless Joy, Laughter & Love 🎈" aria-label="Open photo 4 in full view">
+          <img src="images/photo4.webp" alt="Memory Photo 4 - Floating Balloons" class="polaroid-photo" loading="lazy" decoding="async">
+        </a>
+      </div>
+
+      <!-- Layer 2: Section Background with Transparent Polaroid Cutouts (z-index 2) -->
+      <img src="images/Sec3.webp" alt="Polaroid Scrapbook Frames" style="pointer-events: none;" class="sec-bg sec-bg-interactive" loading="lazy" decoding="async">
+
+      <!-- Layer 3: Text & Floating Elements (z-index 3) -->
+      <div class="gallery-content-layer">
+        <div class="gallery-header-block reveal">
+          <h2 class="gallery-title">Our Beautiful <br/>Memories</h2>
+        </div>
+      </div>
+
+      <!-- Layer 4: Tap to Open Hint Badge (Shows once to guide the user) -->
+      <div class="gallery-tap-hint" id="gallery-tap-hint" role="button" tabindex="0" aria-label="Tap photo to open full view">
+        <span class="tap-hint-icon" aria-hidden="true">👆</span>
+        <span class="tap-hint-text">Tap to open</span>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         SECTION 4: TIMELINE
+         ------------------------------------------------------- -->
+    <section id="sec-timeline" class="anniv-section" aria-label="Our Celebration Timeline">
+      <img src="images/Sec4.webp" alt="Celebration Timeline Background" class="sec-bg" loading="lazy" decoding="async">
+
+      <div class="timeline-content">
+        <div class="timeline-header-block reveal">
+          <h2 class="timeline-title">Our Celebration <br/>Timeline</h2>
+        </div>
+
+        <div class="timeline-list">
+          <div class="timeline-item reveal" style="--item-index: 0;">
+            <div class="timeline-time">4:00 PM —</div>
+            <div class="timeline-desc">Arrival &amp; Welcome</div>
+          </div>
+
+          <div class="timeline-item reveal" style="--item-index: 1;">
+            <div class="timeline-time">5:00 PM —</div>
+            <div class="timeline-desc">Drinks &amp; Mingling</div>
+          </div>
+
+          <div class="timeline-item reveal" style="--item-index: 2;">
+            <div class="timeline-time">7:00 PM —</div>
+            <div class="timeline-desc">Anniversary Dinner</div>
+          </div>
+
+          <div class="timeline-item reveal" style="--item-index: 3;">
+            <div class="timeline-time">9:00 PM —</div>
+            <div class="timeline-desc">Dancing &amp; Celebration</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         SECTION 5: VENUE & MAP (CRITICAL LAYOUT)
+         Layer 1: Google Maps iframe BEHIND background (z-index 1)
+         Layer 2: Sec5.webp with transparent window (z-index 2)
+         Layer 3: Text & "Open in Maps" button (z-index 3)
+         ------------------------------------------------------- -->
+    <section id="sec-venue" class="anniv-section" aria-label="Venue and Location">
+      <!-- Layer 1: Google Maps iframe BEHIND Section Background (z-index 1) -->
+      <div class="venue-map-layer" aria-label="Venue Google Map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.5807490076296!2d77.1706!3d28.5823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1d7398184a43%3A0xe2125f168d18e8df!2sTaj%20Palace%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin"
+          class="venue-iframe"
+          title="Celebration Venue Map Location"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- Layer 2: Section Background with Transparent Map Window (z-index 2) -->
+      <img src="images/Sec5.webp" alt="Venue Passport & Compass Background" style="pointer-events: none;" class="sec-bg sec-bg-interactive" loading="lazy" decoding="async">
+
+      <!-- Layer 3: Floating Text & Open in Maps Button (z-index 3) -->
+      <div class="venue-content-layer">
+        <div class="venue-header-block reveal">
+          <h2 class="venue-title">Join Us Here</h2>
+        </div>
+
+        <div class="venue-details-block reveal">
+          <p class="venue-name-line"><strong>VENUE:</strong> The Grand Palace Hotel</p>
+          <p class="venue-address-line">123 Heritage Boulevard, Civil Lines, New Delhi 110001</p>
+
+          <div class="venue-inner-divider">
+            <span class="letter-dash">—</span>
+            <span class="letter-heart" aria-hidden="true">♡</span>
+            <span class="letter-dash">—</span>
+          </div>
+
+          <p class="venue-extra-info"><strong>PARKING:</strong> Free parking available on-site</p>
+          <p class="venue-extra-info"><strong>STAY:</strong> Nearby hotels &amp; guest suites available</p>
+        </div>
+
+        <!-- Open in Maps Button (positioned directly over the wax seal badge) -->
+        <a href="https://maps.google.com/?q=Taj+Palace+New+Delhi" target="_blank" rel="noopener noreferrer" class="btn-open-maps reveal" id="btn-open-maps" aria-label="Open location in Google Maps">
+          <svg class="map-pin-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          <span>OPEN IN MAPS</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         SECTION 6: RSVP FORM
+         ------------------------------------------------------- -->
+    <section id="sec-rsvp" class="anniv-section" aria-label="RSVP Response Form">
+      <img src="images/Sec6.webp" alt="Romantic Velvet RSVP Background" class="sec-bg" loading="lazy" decoding="async">
+
+      <div class="rsvp-content-layer">
+        <div class="rsvp-header-block reveal">
+          <h2 class="rsvp-title">RSVP</h2>
+          <p class="rsvp-subtitle">Kindly reply by 15 October 2026</p>
+        </div>
+
+        <form class="rsvp-form-card reveal" id="rsvp-form" onsubmit="event.preventDefault(); sendRSVP();" novalidate>
+          <!-- Absolute Warning Floating Toast (Takes NO space in form flow) -->
+          <div class="rsvp-alert" id="rsvp-alert" role="alert" aria-live="polite">
+            <svg viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+            <span id="rsvp-alert-text">Please complete all required fields.</span>
+            <button type="button" class="alert-close-btn" onclick="closeRsvpAlert()" aria-label="Close message">&times;</button>
+          </div>
+
+          <!-- Full Name -->
+          <div class="form-row">
+            <div class="input-capsule" id="capsule-rsvp-name">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </span>
+              <input type="text" id="rsvp-name" class="form-input" placeholder="Full Name" autocomplete="name">
+              <span class="capsule-status-icon" aria-hidden="true"></span>
+              <div class="input-tooltip" id="tooltip-rsvp-name" role="alert" aria-live="polite">Please enter your Full Name to proceed.</div>
+            </div>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-row">
+            <div class="input-capsule" id="capsule-rsvp-phone">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+              </span>
+              <input type="tel" id="rsvp-phone" class="form-input" placeholder="Phone Number" autocomplete="tel">
+              <span class="capsule-status-icon" aria-hidden="true"></span>
+              <div class="input-tooltip" id="tooltip-rsvp-phone" role="alert" aria-live="polite">Please enter a valid Phone Number to proceed.</div>
+            </div>
+          </div>
+
+          <!-- Attendance Radio -->
+          <div class="form-row">
+            <div class="attendance-radio-group">
+              <label class="radio-chip active" id="chip-accept">
+                <input type="radio" name="attendance" value="accept" checked onchange="handleAttendanceChange(this.value)">
+                <span class="radio-indicator"></span>
+                <span class="radio-label">Joyfully Accept</span>
+              </label>
+
+              <label class="radio-chip" id="chip-decline">
+                <input type="radio" name="attendance" value="decline" onchange="handleAttendanceChange(this.value)">
+                <span class="radio-indicator"></span>
+                <span class="radio-label">Regretfully Decline</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Number of Guests -->
+          <div class="form-row" id="guests-row">
+            <div class="input-capsule">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                </svg>
+              </span>
+              <input type="number" id="rsvp-guests" class="form-input" value="1" min="1" max="10" placeholder="Number of Guests">
+            </div>
+          </div>
+
+          <!-- Checkboxes for Events -->
+          <div class="form-row" id="events-row">
+            <div class="events-check-group">
+              <label class="event-checkbox-label">
+                <input type="checkbox" name="events_attending" value="Dinner" checked>
+                <span class="custom-checkbox"></span>
+                <span class="check-text">Dinner</span>
+              </label>
+
+              <label class="event-checkbox-label">
+                <input type="checkbox" name="events_attending" value="Dancing" checked>
+                <span class="custom-checkbox"></span>
+                <span class="check-text">Dancing</span>
+              </label>
+
+              <label class="event-checkbox-label">
+                <input type="checkbox" name="events_attending" value="Both" checked>
+                <span class="custom-checkbox"></span>
+                <span class="check-text">Both</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-row form-submit-row">
+            <button class="btn-rsvp-submit" type="button" onclick="sendRSVP()" id="btn-send-rsvp">
+              <span class="btn-rsvp-text">SEND RSVP</span>
+            </button>
+          </div>
+        </form>
+
+        <p class="rsvp-bottom-note reveal">Can't wait to <br/> celebrate with you <span class="sig-heart">♡</span></p>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         STRICT FOOTER IMPLEMENTATION (Required Format)
+         ======================================================= -->
+    <footer class="footer" style="padding: 8px 12px max(8px, env(safe-area-inset-right, 0px)); text-align: center; border-top: 1px solid rgba(231,191,133,0.2);">
+      <p style="font-size:0.75rem; color:var(--text-muted);">
+        Designed by <a href="https://invitebox.in/" target="_blank" rel="noreferrer" style="color:var(--primary); text-decoration:none; font-weight:600;">Invite&nbsp;Box</a>
+      </p>
+    </footer>
+
+  </main><!-- /#app -->
+
+  <!-- =========================================================
+       5. MUSIC FLOATING ACTION BUTTON (FAB)
+       ========================================================= -->
+  <button id="mfab" type="button" title="Toggle Background Music" onclick="toggleMusic()" aria-label="Toggle background music">
+    <!-- Muted Icon (shown by default) -->
+    <svg id="icon-off" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+      <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+    </svg>
+    <!-- Playing Icon (shown when unmuted) -->
+    <svg id="icon-on" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none;" aria-hidden="true">
+      <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+    </svg>
+  </button>
+
+  <!-- Background Music Audio -->
+  <audio id="bg-music" loop preload="none" aria-hidden="true">
+    <source src="images/ikoliks_aj-indian-india-hindi-song-music-3922142.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Fancybox 5 Lightbox JavaScript (Deferred) -->
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js" defer></script>
+
+  <!-- External JavaScript Application Logic (Deferred) -->
+  <script src="app.js" defer></script>
+</body>
+</html>
+

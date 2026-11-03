@@ -1,0 +1,45 @@
+write a prompt for antigravity Ai to create animated each section as i described in below sections 
+
+---------------------------------------------------------------------------------------------
+
+first section with BG_sec1.webp(fit screen) image as in background and in top side BellDecorSec1.webp bell image but copied 4 times two large and two small and animating like a pendulum but not like this bell 3d rotate in left side and right side, and bottom side layer of BottomDecorSec1.webp as kalash decor and width 100%and position by bottom percentage and then Elephant.webp and FlowerOverlaySec1.webp imaage in one box with aspect ratio on parent and image size and position by percentage and it will be animated only the elephant as he is jumping slowly and gracefully infinite but jump should be in long intervals (every 4 sec one jump)and always keep in mind every frame should be so smooth and realistic like real short film and this flower elephant will be top of that banana bush at bottom side and replicate both left and right side opposite directions. then next section will be mehndi and MehndiBg.webp will be for bg fit screen and bottom side MehndiCouple.webp image position by percentage and width 100% and then TopDecorMehndi.webp at top for decoration and in this section only one animation as marieGold flower canvas where top side flower spreaded and then while going down with subtle rotation and narrowing on couple and go down off screen or fade out whatever looks better. then haldi part with BG_Haldi.webp background and HaldiLady.webp at bottom width 100% and then FlowerDecorTopHaldi.webp at top center part as decorations and then FlowerDecorLatkanHaldi.webp four copy two small and two large copy and animated like flower series waving with very calm down air wing and continuous flow one after another so that viewers feel like real flower series waving in air and same animation as in mehndi part marie gold flowers poring down on girl and fade out or going offscreen at bottom from top. then dance(snageet) part with bg BgSangeet.webp fit screen and River.webp at bottom part as river floating but no animation on this river bg image and i want to create a complex animation on this like two to three Swan.webp(top of layer that lotus flowers) swans floating over this river from left to right with little bit size difference and movement speed difference and similarly LotusFloting.webp  for lotus  floating animation on water river as floating with water from left to right two to three copy and remember that this will be continuous so it should be like marquee with last frame should be copied on front as continuous and while moving swan from last scene as it reaches to right it should again placed at start but thing placing will be off screen as replicating continuity and just this river bg will be this CoupleDance.webp couple dancing pic but layer will be behind river whole animation  remember that each section should animate while person reaches to that section as scroll trigger animations and for this you can use gsap too and each animation and layer should be compact in its own parent so that i can move then freely if required for responsible layout. and for all added text will be reveal animation like fade in zoom to normal size and with blur to clear wordings and any other gsap animations on text with scroll triggers. for this invitations i also want some restrictions like this will be for mobile devices so add parent restrictions as you can see in my old code and orientation warnings and video intro animation but only one tap to open click required and video will not be pause at anytime but fade out while ending point of video is arriving and scroll will be blocked until video played and then scroll down indication for user to understand that scroll is enabled, and fab button for bg music play after intro video ends also want rsvp form section with whatsapp prefilled message through form with decorated with emojis and proper formatting and then footer. and i also want one more section designed by AI itself one for wedding date revels after sangeet part with couple like circle arround vow fire on wedding all animation on this will be as in marigold section but this time with like rose petals and other animation as AI design itself will all layer generate itself and animate it. also pay attention for mobile own navigations spacing for each positioning where required specilly for buttons and text as in index file calc(env(safe-area-inset-bottom, 0px), -webkit-fill-available, <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"> etc 
+
+Always include safe area padding so home indicators on iPhone and gesture navigation on Android do not collide with footer text:
+
+```html
+<footer class="footer" style="padding: 8px 12px max(8px, env(safe-area-inset-left, 0px)); text-align: center; border-top: 1px solid rgba(231,191,133,0.2);">
+  <p style="font-size:0.75rem; color:var(--text-muted);">
+    Designed by <a href="https://invitebox.in/" target="_blank" rel="noreferrer" style="color:var(--primary); text-decoration:none; font-weight:600;">Invite&nbsp;Box</a>
+  </p>
+</footer>
+```
+
+## BUILD CHECKLIST
+
+- [ ] `viewport-fit=cover` in meta tag
+- [ ] `setActualVh()` is first code in script block
+- [ ] `scrollRestoration = 'manual'` + `scrollTo(0,0)` at top
+- [ ] `body { overflow: hidden }` on load; `body.unlocked` added only when intro ends
+- [ ] Intro type decided: video (music after video) or envelope (music on tap)
+- [ ] FAB: `bottom: max(72px, calc(env(safe-area-inset-bottom,0px) + 38px))`
+- [ ] Footer safe area padding: `padding-bottom` includes `env(safe-area-inset-bottom, 0px)`
+- [ ] FAB hidden initially, `.visible` added in `reveal()` function
+- [ ] Scroll indicator hidden initially, `.visible` added in `reveal()` function
+- [ ] All overlays use 5-line height cascade
+- [ ] Hero section uses 5-line min-height cascade
+- [ ] All headline sizes use `clamp()`
+- [ ] All section padding uses `clamp()`
+- [ ] Canvas: petal count capped 10–30, resize uses `visualViewport?.height`
+- [ ] `prefers-reduced-motion` skips canvas loop and disables transitions
+- [ ] RSVP validates name + phone before sending
+- [ ] WhatsApp message properly encoded with stylized emojis and borders
+- [ ] WhatsApp URL: `api.whatsapp.com` for mobile, `web.whatsapp.com` for desktop
+- [ ] `initScrollReveal()` called AFTER `body.unlocked` — not before
+- [ ] Embla autoplay pauses via IntersectionObserver when off-screen
+- [ ] All icons are inline SVG — no icon fonts
+- [ ] Gallery images have `loading="lazy"`; hero/above-fold images do NOT
+- [ ] Invite Box credit link in footer
+- [ ] OG image is 1200×630px WebP or PNG
+
+
+now write detailed prompt to create this invitation
